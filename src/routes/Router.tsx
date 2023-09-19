@@ -2,6 +2,8 @@ import { Route, Routes } from 'react-router-dom'
 
 import { DefaultLayout } from '../common/Layouts/DefaultLayout'
 
+import { Login } from '../pages/Login'
+
 export function Router() {
   function RenderRoute() {
     return (
@@ -14,8 +16,9 @@ export function Router() {
   return (
     <>
       <Routes>
+        <Route path="/login" element={<Login />} />
+
         <Route path="/" element={<DefaultLayout />}>
-          <Route path="/login" element={<RenderRoute />} />
           <Route path="/dashboard" element={<RenderRoute />} />
           <Route path="/profile-edition" element={<RenderRoute />} />
         </Route>
