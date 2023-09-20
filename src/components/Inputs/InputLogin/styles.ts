@@ -25,7 +25,6 @@ export const InputProperties = styled.div<InputPropertiesProps>`
   height: 2rem;
   border: 1px solid transparent;
   border-radius: 4px;
-  /* outline: 2px solid transparent; */
   overflow: hidden;
 
   display: flex;
@@ -34,7 +33,6 @@ export const InputProperties = styled.div<InputPropertiesProps>`
   &:focus-within,
   &:hover {
     background-color: ${(props) => props.theme['green-500']};
-    /* outline-color: ${(props) => props.theme['green-500']}; */
     border-color: ${(props) => props.theme['green-500']};
   }
 
@@ -42,7 +40,7 @@ export const InputProperties = styled.div<InputPropertiesProps>`
     color: ${(props) => props.theme.dark};
     width: 100%;
     height: 100%;
-    padding: 1rem;
+    padding: 1rem; // espaçamento dentro do input
     border: 0;
     outline: none;
   }

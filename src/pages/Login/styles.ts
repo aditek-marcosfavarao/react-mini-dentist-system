@@ -4,6 +4,20 @@ export const LoginContainer = styled.div`
   background-color: ${(props) => props.theme.white};
   height: 100vh;
   position: relative;
+
+  &::before {
+    content: '';
+    background-color: ${(props) => props.theme['green-500']};
+    width: 8rem;
+    height: 16rem;
+    padding: 1rem;
+
+    position: absolute;
+    top: -8rem;
+    left: -4rem;
+
+    rotate: 45deg;
+  }
 `
 
 export const LoginDisplay = styled.main`

@@ -1,7 +1,7 @@
 import { InputLoginContainer, InputProperties } from './styles'
 
 interface InputLoginProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label: string
+  label?: string
   cursorPointerOnHoverIcon?: boolean
   iconLeft?: () => void
   iconRight?: () => void
