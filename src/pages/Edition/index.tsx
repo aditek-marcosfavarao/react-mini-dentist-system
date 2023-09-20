@@ -117,7 +117,7 @@ export function Edition() {
                   id="name"
                   name="name"
                   type="text"
-                  label="Nome"
+                  label="Nome completo"
                   inputSize={'extended'}
                 />
               </LineBreaker>
