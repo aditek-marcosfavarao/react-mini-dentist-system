@@ -52,6 +52,11 @@ export const InputProperties = styled.div<InputPropertiesProps>`
     margin: 0.5rem;
     border: 0;
 
+    // alterar espessura do elemento svg
+    // necessário usar uma cor de linha(stroke) para surtir efeito
+    /* stroke: ${(props) => props.theme.white};
+    stroke-width: 4px; */
+
     ${(props) =>
       props.cursorPointerOnHoverIcon &&
       css`

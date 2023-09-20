@@ -6,9 +6,8 @@ export const EditionContainer = styled.div`
 
 export const EditionDisplay = styled.div`
   background-color: ${(props) => props.theme.white};
-  max-width: 50rem;
-  margin: 0 auto;
-  margin-top: 2rem;
+  max-width: 60rem;
+  margin: 1rem auto;
   border: 1px solid ${(props) => props.theme['gray-300']};
   border-radius: 8px;
   overflow: hidden;
@@ -54,6 +53,10 @@ export const Info = styled.div`
     font-size: 1rem;
     font-weight: 600;
     line-height: 1.6;
+
+    span {
+      color: ${(props) => props.theme['green-500']};
+    }
   }
 
   time {
@@ -93,6 +96,10 @@ export const Avatar = styled.div`
 export const EditionContent = styled.form`
   width: 100%;
   padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 `
 
 export const ContentHeader = styled.header`
@@ -102,9 +109,30 @@ export const ContentHeader = styled.header`
 `
 
 export const ContentBlock = styled.div`
+  flex: 1;
+
   h3 {
     font-size: 1rem;
     font-weight: 600;
     line-height: 1.6;
   }
+
+  textarea {
+    color: ${(props) => props.theme.dark};
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid ${(props) => props.theme['gray-300']};
+    border-radius: 4px;
+    outline: 0;
+
+    &:focus {
+      border-color: ${(props) => props.theme['green-500']};
+    }
+  }
+`
+
+export const LineBreaker = styled.div`
+  margin: 1rem 0;
+  display: flex;
+  gap: 1rem;
 `
