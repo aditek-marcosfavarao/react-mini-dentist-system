@@ -17,15 +17,11 @@ import {
 import { Popup } from '../../components/Popup'
 import { useState } from 'react'
 
-type ClickType = 'none' | 'block'
+type ClickType = true | false
 
 export function Dashboard() {
-  const [clicou, setClicou] = useState<ClickType>('none')
+  const [clicou, setClicou] = useState<ClickType>(false)
 
-  const cliquei = () => {
-    console.log('Clicou moço')
-    setClicou('block')
-  }
   return (
     <DashboardContainer>
       <DashboardNavbar>
@@ -55,13 +51,22 @@ export function Dashboard() {
           weight="bold"
           size={23}
           onClick={() => {
-            cliquei()
+            console.log('clicoooouuuu')
+
+            return setClicou(true)
           }}
         />
-        <Popup
-          clicou={clicou}
-          handleChangeDisplayElement={() => setClicou('none')}
-        />
+        {clicou ? (
+          <Popup
+            title="Ação Necessária"
+            nameButton="Confirmar"
+            buttonColorVariant={'red'}
+            onClose={() => setClicou(false)}
+            id="modal"
+          >
+            <div>hahahah</div>
+          </Popup>
+        ) : null}
         <PencilSimpleLine className="iconEditCard" weight="bold" size={23} />
       </DisplayHeader>
     </DashboardContainer>

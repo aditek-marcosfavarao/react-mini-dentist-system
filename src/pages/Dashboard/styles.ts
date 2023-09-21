@@ -2,8 +2,8 @@ import styled from 'styled-components'
 
 export const DashboardContainer = styled.div`
   background-color: ${(props) => props.theme.white};
-  /* height: 100vh; */
   position: relative;
+  height: calc(100vh - 5.6rem);
 `
 
 export const DashboardNavbar = styled.div`
@@ -56,9 +56,9 @@ export const DisplayHeader = styled.header`
   margin: auto;
   margin-top: 50px;
   background-color: ${(props) => props.theme.white};
-  width: 90vw;
+  width: 80rem;
+  height: 20rem;
   padding: 1rem;
-  height: 350px;
   overflow: hidden;
 
   position: relative;

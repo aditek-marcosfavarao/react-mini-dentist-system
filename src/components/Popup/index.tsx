@@ -1,23 +1,40 @@
-import { PopupWrapper } from './styles'
+import { VariantColor, CustomButton, PopupWrapper } from './styles'
 
 interface PopupProps {
-  clicou: string
-  handleChangeDisplayElement: () => void
+  title: string
+  nameButton: string
+  buttonColorVariant: VariantColor
+  onClose: () => void
+  id: string
+  children: React.ReactNode
 }
-export function Popup({ clicou = '', handleChangeDisplayElement }: PopupProps) {
-  // console.log('props', clicou)
+export function Popup({
+  title,
+  nameButton,
+  buttonColorVariant,
+  onClose,
+  id = 'modal',
+  children,
+}: PopupProps) {
+  const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.currentTarget.id === id) onClose()
+  }
 
   return (
     <PopupWrapper>
-      <div className="popupWrapper" style={{ display: clicou }}>
-        <div className="popup" style={{ display: clicou }}>
+      <div id={id} className="popupWrapper" onClick={handleOutsideClick}>
+        <div className="popup">
           <div>
-            <h2>hahaha</h2>
-            <p>texto p</p>
-            <a href="#" onClick={handleChangeDisplayElement}>
-              Cancelar
-            </a>
-            <a href="#">Deletar</a>
+            <h2>{title}</h2>
+            <div className="content">{children}</div>
+            <div className="buttons">
+              <button className="buttonCancel" onClick={onClose}>
+                Cancelar
+              </button>
+              <CustomButton variant={buttonColorVariant}>
+                {nameButton}
+              </CustomButton>
+            </div>
           </div>
         </div>
       </div>
