@@ -22,7 +22,7 @@ export const InputLoginContainer = styled.div`
 export const InputProperties = styled.div<InputPropertiesProps>`
   background-color: ${(props) => props.theme['gray-300']};
   width: 100%;
-  height: 2rem;
+  height: 2.25rem;
   border: 1px solid transparent;
   border-radius: 4px;
   overflow: hidden;
@@ -40,7 +40,7 @@ export const InputProperties = styled.div<InputPropertiesProps>`
     color: ${(props) => props.theme.dark};
     width: 100%;
     height: 100%;
-    padding: 1rem; // espaçamento dentro do input
+    padding: 0.5rem; // espaçamento dentro do input
     border: 0;
     outline: none;
   }
