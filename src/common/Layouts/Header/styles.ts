@@ -18,6 +18,18 @@ export const HeaderContainer = styled.header`
   img {
     width: 3rem;
     height: 3rem;
+    cursor: pointer;
+  }
+  .teste {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+  svg {
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    cursor: pointer;
   }
 `
 

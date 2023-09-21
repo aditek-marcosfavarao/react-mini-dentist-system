@@ -8,8 +8,6 @@ export const DashboardContainer = styled.div`
 
 export const DashboardNavbar = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
   background-color: rgba(58, 175, 131, 0.1);
   border-bottom: 2px solid rgba(58, 175, 131, 0.15);
@@ -24,6 +22,15 @@ export const DashboardNavbar = styled.div`
     color: ${(props) => props.theme['green-500']};
     cursor: pointer;
   }
+`
+
+export const UsersAligment = styled.div`
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 `
 
 export const IconPatient = styled.div`
@@ -60,7 +67,6 @@ export const DisplayHeader = styled.header`
   height: 20rem;
   padding: 1rem;
   overflow: hidden;
-
   position: relative;
   display: flex;
   align-items: center;

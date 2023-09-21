@@ -23,7 +23,7 @@ export function Popup({
   return (
     <PopupWrapper>
       <div id={id} className="popupWrapper" onClick={handleOutsideClick}>
-        <div className="popup">
+        <div className="popup" onClick={(event) => event.stopPropagation()}>
           <div>
             <h2>{title}</h2>
             <div className="content">{children}</div>
