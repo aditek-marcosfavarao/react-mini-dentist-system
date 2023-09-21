@@ -1,16 +1,26 @@
-import { PopupWrapper, PopUp } from './styles'
+import { PopupWrapper } from './styles'
 
-export function Popup() {
+interface PopupProps {
+  clicou: string
+  handleChangeDisplayElement: () => void
+}
+export function Popup({ clicou = '', handleChangeDisplayElement }: PopupProps) {
+  // console.log('props', clicou)
+
   return (
     <PopupWrapper>
-      <PopUp>
-        <div>
-          <h2>hahaha</h2>
-          <p>texto p</p>
-          <a href="#">Cancelar</a>
-          <a href="#">Deletar</a>
+      <div className="popupWrapper" style={{ display: clicou }}>
+        <div className="popup" style={{ display: clicou }}>
+          <div>
+            <h2>hahaha</h2>
+            <p>texto p</p>
+            <a href="#" onClick={handleChangeDisplayElement}>
+              Cancelar
+            </a>
+            <a href="#">Deletar</a>
+          </div>
         </div>
-      </PopUp>
+      </div>
     </PopupWrapper>
   )
 }

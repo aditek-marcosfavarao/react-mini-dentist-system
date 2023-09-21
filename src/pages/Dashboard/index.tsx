@@ -15,8 +15,17 @@ import {
   PencilSimpleLine,
 } from '@phosphor-icons/react'
 import { Popup } from '../../components/Popup'
+import { useState } from 'react'
+
+type ClickType = 'none' | 'block'
 
 export function Dashboard() {
+  const [clicou, setClicou] = useState<ClickType>('none')
+
+  const cliquei = () => {
+    console.log('Clicou moço')
+    setClicou('block')
+  }
   return (
     <DashboardContainer>
       <DashboardNavbar>
@@ -45,9 +54,14 @@ export function Dashboard() {
           className="iconDeletCard"
           weight="bold"
           size={23}
-          onClick={() => {}}
+          onClick={() => {
+            cliquei()
+          }}
         />
-        <Popup />
+        <Popup
+          clicou={clicou}
+          handleChangeDisplayElement={() => setClicou('none')}
+        />
         <PencilSimpleLine className="iconEditCard" weight="bold" size={23} />
       </DisplayHeader>
     </DashboardContainer>
