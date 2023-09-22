@@ -13,6 +13,10 @@ interface InputLabelProps {
   inputSize: InputSize
 }
 
+interface AvatarProps {
+  contentLetter?: string
+}
+
 export const EditionContainer = styled.div`
   background-color: ${(props) => props.theme.white};
 `
@@ -82,7 +86,7 @@ export const Info = styled.div`
   }
 `
 
-export const Avatar = styled.div`
+export const Avatar = styled.div<AvatarProps>`
   background-color: ${(props) => props.theme.white};
   width: 6rem;
   height: 6rem;
@@ -92,7 +96,7 @@ export const Avatar = styled.div`
   outline: ${(props) => props.theme['green-500']} 2px solid;
 
   &::after {
-    content: 'M';
+    content: '${(props) => String(props.contentLetter)}';
     color: ${(props) => props.theme['green-500']};
 
     position: absolute;

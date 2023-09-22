@@ -1,12 +1,12 @@
+import React from 'react'
 import * as zod from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
+import { api } from '../../common/services'
 import { formatDate } from '../../common/utils'
 
 import { Button } from '../../components/Buttons/Button'
-
-import React from 'react'
 
 import { datalistOptionsTratment, datalistOptionsUF } from './data'
 
@@ -26,10 +26,7 @@ import {
 const editionFormValidationSchema = zod.object({
   lastApointment: zod.coerce.date(),
   nextApointment: zod.coerce.date(),
-  treatmentType: zod
-    .string()
-    .min(1, { message: 'Treatment is required' })
-    .trim(),
+  treatmentType: zod.string().min(1, { message: 'Treatment is required' }),
   treatmentStart: zod.coerce.date(),
   treatmentEnd: zod.coerce.date().optional().or(zod.literal('')),
   userName: zod.string().min(1, 'User name is required').max(100).trim(),
@@ -81,6 +78,8 @@ const editionFormValidationSchema = zod.object({
 type LoginFormData = zod.infer<typeof editionFormValidationSchema>
 
 export function Edition() {
+  const [editForm, setEditForm] = React.useState(false)
+
   const {
     register,
     handleSubmit,
@@ -115,8 +114,6 @@ export function Edition() {
     shouldFocusError: true,
   })
 
-  const [editForm, setEditForm] = React.useState(false)
-
   function handleChangeFormEdition() {
     setEditForm((state) => !state)
   }
@@ -132,14 +129,14 @@ export function Edition() {
   const lastEditionDate = new Date()
   const lastProfileEdition = formatDate(lastEditionDate, 'simple')
   const isFormEditionEnabled = editForm
-
   const inputDisabled = !isFormEditionEnabled
+  const avatarLetter = 'M'
   return (
     <>
       <EditionContainer>
         <EditionDisplay>
           <DisplayHeader>
-            <Avatar />
+            <Avatar contentLetter={avatarLetter} />
 
             <Info>
               <h2>Marcos Adriano Lorencini Favarão</h2>
@@ -161,6 +158,7 @@ export function Edition() {
                   type="button"
                   buttonName="Editar"
                   onClick={handleChangeFormEdition}
+                  buttonColor="gray"
                 />
               )}
 
@@ -177,10 +175,10 @@ export function Edition() {
                   <span>Última consulta</span>
 
                   <input
+                    disabled={inputDisabled}
                     id="lastApointment"
                     type="datetime-local"
-                    {...(register('lastApointment'),
-                    { disabled: inputDisabled })}
+                    {...register('lastApointment')}
                   />
                 </InputLabel>
 
@@ -188,10 +186,10 @@ export function Edition() {
                   <span>Próxima consulta</span>
 
                   <input
+                    disabled={inputDisabled}
                     id="nextApointment"
                     type="datetime-local"
-                    {...(register('nextApointment'),
-                    { disabled: inputDisabled })}
+                    {...register('nextApointment')}
                   />
                 </InputLabel>
               </LineBreaker>
@@ -205,11 +203,11 @@ export function Edition() {
                   <span>Tipo de tratamento</span>
 
                   <input
+                    disabled={inputDisabled}
                     id="treatmentType"
                     list="treatments"
                     type="text"
-                    {...(register('treatmentType'),
-                    { disabled: inputDisabled })}
+                    {...register('treatmentType')}
                   />
                 </InputLabel>
 
@@ -225,10 +223,10 @@ export function Edition() {
                   <span>Iniciado em</span>
 
                   <input
+                    disabled={inputDisabled}
                     id="treatmentStart"
                     type="date"
-                    {...(register('treatmentStart'),
-                    { disabled: inputDisabled })}
+                    {...register('treatmentStart')}
                   />
                 </InputLabel>
 
@@ -236,9 +234,10 @@ export function Edition() {
                   <span>Finalizado em</span>
 
                   <input
+                    disabled={inputDisabled}
                     id="treatmentEnd"
                     type="date"
-                    {...(register('treatmentEnd'), { disabled: inputDisabled })}
+                    {...register('treatmentEnd')}
                   />
                 </InputLabel>
               </LineBreaker>
@@ -252,9 +251,10 @@ export function Edition() {
                   <span>Nome completo</span>
 
                   <input
+                    disabled={inputDisabled}
                     id="userName"
                     type="text"
-                    {...(register('userName'), { disabled: inputDisabled })}
+                    {...register('userName')}
                   />
                 </InputLabel>
               </LineBreaker>
@@ -264,11 +264,12 @@ export function Edition() {
                   <span>CPF</span>
 
                   <input
+                    disabled={inputDisabled}
                     id="userID"
                     type="text"
                     maxLength={11}
                     placeholder="000.000.000-00"
-                    {...(register('userID'), { disabled: inputDisabled })}
+                    {...register('userID')}
                   />
                 </InputLabel>
 
@@ -276,11 +277,12 @@ export function Edition() {
                   <span>RG</span>
 
                   <input
+                    disabled={inputDisabled}
                     id="userDocument"
                     type="text"
                     maxLength={9}
                     placeholder="00.000.000-0"
-                    {...(register('userDocument'), { disabled: inputDisabled })}
+                    {...register('userDocument')}
                   />
                 </InputLabel>
 
@@ -288,10 +290,10 @@ export function Edition() {
                   <span>Nascimento</span>
 
                   <input
+                    disabled={inputDisabled}
                     id="userBirthdate"
                     type="date"
-                    {...(register('userBirthdate'),
-                    { disabled: inputDisabled })}
+                    {...register('userBirthdate')}
                   />
                 </InputLabel>
 
@@ -299,10 +301,11 @@ export function Edition() {
                   <span>Idade</span>
 
                   <input
+                    disabled={inputDisabled}
                     id="userAge"
                     type="number"
                     min={1}
-                    {...(register('userAge'), { disabled: inputDisabled })}
+                    {...register('userAge')}
                   />
                 </InputLabel>
               </LineBreaker>
@@ -312,9 +315,10 @@ export function Edition() {
                   <span>Telefone</span>
 
                   <input
+                    disabled={inputDisabled}
                     id="userPhone"
                     type="text"
-                    {...(register('userPhone'), { disabled: inputDisabled })}
+                    {...register('userPhone')}
                   />
                 </InputLabel>
 
@@ -322,9 +326,10 @@ export function Edition() {
                   <span>Celular</span>
 
                   <input
+                    disabled={inputDisabled}
                     id="userCelPhone"
                     type="text"
-                    {...(register('userCelPhone'), { disabled: inputDisabled })}
+                    {...register('userCelPhone')}
                   />
                 </InputLabel>
               </LineBreaker>
@@ -334,10 +339,11 @@ export function Edition() {
                   <span>E-mail</span>
 
                   <input
+                    disabled={inputDisabled}
                     id="userEmail"
                     type="email"
                     placeholder="mail@mail.com"
-                    {...(register('userEmail'), { disabled: inputDisabled })}
+                    {...register('userEmail')}
                   />
                 </InputLabel>
               </LineBreaker>
@@ -347,9 +353,10 @@ export function Edition() {
                   <span>Endereço</span>
 
                   <input
+                    disabled={inputDisabled}
                     id="userAddress"
                     type="text"
-                    {...(register('userAddress'), { disabled: inputDisabled })}
+                    {...register('userAddress')}
                   />
                 </InputLabel>
               </LineBreaker>
@@ -359,11 +366,11 @@ export function Edition() {
                   <span>N°</span>
 
                   <input
+                    disabled={inputDisabled}
                     id="userAddressNumber"
                     type="number"
                     min={1}
-                    {...(register('userAddressNumber'),
-                    { disabled: inputDisabled })}
+                    {...register('userAddressNumber')}
                   />
                 </InputLabel>
 
@@ -371,10 +378,10 @@ export function Edition() {
                   <span>Complemento</span>
 
                   <input
+                    disabled={inputDisabled}
                     id="userAddressComplement"
                     type="text"
-                    {...(register('userAddressComplement'),
-                    { disabled: inputDisabled })}
+                    {...register('userAddressComplement')}
                   />
                 </InputLabel>
 
@@ -382,10 +389,10 @@ export function Edition() {
                   <span>Cidade</span>
 
                   <input
+                    disabled={inputDisabled}
                     id="userAddressCity"
                     type="text"
-                    {...(register('userAddressCity'),
-                    { disabled: inputDisabled })}
+                    {...register('userAddressCity')}
                   />
                 </InputLabel>
 
@@ -393,12 +400,12 @@ export function Edition() {
                   <span>UF</span>
 
                   <input
+                    disabled={inputDisabled}
                     id="userAddressUF"
                     maxLength={2}
                     type="text"
                     list="ufs"
-                    {...(register('userAddressUF'),
-                    { disabled: inputDisabled })}
+                    {...register('userAddressUF')}
                   />
 
                   <datalist id="ufs">
@@ -412,10 +419,10 @@ export function Edition() {
                   <span>CEP</span>
 
                   <input
+                    disabled={inputDisabled}
                     id="userAddressCEP"
                     type="text"
-                    {...(register('userAddressCEP'),
-                    { disabled: inputDisabled })}
+                    {...register('userAddressCEP')}
                   />
                 </InputLabel>
               </LineBreaker>
@@ -426,11 +433,11 @@ export function Edition() {
 
               <LineBreaker>
                 <textarea
+                  disabled={inputDisabled}
                   cols={30}
                   rows={10}
                   placeholder="..."
-                  {...(register('drugObservations'),
-                  { disabled: inputDisabled })}
+                  {...register('drugObservations')}
                 />
               </LineBreaker>
             </ContentBlock>
@@ -440,10 +447,11 @@ export function Edition() {
 
               <LineBreaker>
                 <textarea
+                  disabled={inputDisabled}
                   cols={30}
                   rows={10}
                   placeholder="..."
-                  {...(register('observations'), { disabled: inputDisabled })}
+                  {...register('observations')}
                 />
               </LineBreaker>
             </ContentBlock>

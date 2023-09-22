@@ -12,6 +12,7 @@
   "dependencies": {
     "@hookform/resolvers": "^3.3.1",
     "@phosphor-icons/react": "^2.0.10",
+    "axios": "^1.5.0",
     "date-fns": "^2.30.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -31,6 +32,7 @@
     "eslint": "^8.49.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "miragejs": "^0.1.47",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"

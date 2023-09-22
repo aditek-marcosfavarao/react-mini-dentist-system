@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
 const BUTTON_COLOR = {
-  dark: 'dark-500',
+  gray: 'gray-400',
   green: 'green-500',
-}
+} as const
 
 export type ButtonVariant = keyof typeof BUTTON_COLOR
 
