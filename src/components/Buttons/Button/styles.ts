@@ -1,8 +1,20 @@
 import styled from 'styled-components'
 
-export const ButtonContainer = styled.div`
+const BUTTON_COLOR = {
+  dark: 'dark-500',
+  green: 'green-500',
+}
+
+export type ButtonVariant = keyof typeof BUTTON_COLOR
+
+interface ButtonContainerProps {
+  buttonVariant: ButtonVariant
+}
+
+export const ButtonContainer = styled.div<ButtonContainerProps>`
   button {
-    background-color: ${(props) => props.theme['green-500']};
+    background-color: ${(props) =>
+      props.theme[BUTTON_COLOR[props.buttonVariant]]};
     color: ${(props) => props.theme.white};
     width: 100%;
     padding: 0.5rem 1.5rem;
@@ -10,7 +22,7 @@ export const ButtonContainer = styled.div`
     border-radius: 4px;
     outline: transparent solid 2px;
     text-align: center;
-    font-size: 1rem;
+    font-size: 0.875rem;
     font-weight: 600;
     text-transform: uppercase;
 

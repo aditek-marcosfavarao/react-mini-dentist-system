@@ -1,13 +1,18 @@
-import { ButtonContainer } from './styles'
+import { ButtonVariant, ButtonContainer } from './styles'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   buttonName: string
+  buttonColor?: ButtonVariant
 }
 
-export function Button({ buttonName = '', ...rest }: ButtonProps) {
+export function Button({
+  buttonName = '',
+  buttonColor = 'dark',
+  ...rest
+}: ButtonProps) {
   return (
     <>
-      <ButtonContainer>
+      <ButtonContainer buttonVariant={buttonColor}>
         <button {...rest}>{buttonName}</button>
       </ButtonContainer>
     </>

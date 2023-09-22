@@ -95,7 +95,7 @@ export function Login() {
             <InputLabel htmlFor="password">
               <span>Senha</span>
 
-              <InputSettings>
+              <InputSettings pointerOnHoverIcon>
                 <PasswordIcon onClickEvent={handleChangePasswordVisibility} />
                 <input
                   type={inputPasswordType}

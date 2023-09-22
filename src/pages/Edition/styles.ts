@@ -1,5 +1,18 @@
 import styled from 'styled-components'
 
+const INPUT_SIZE = {
+  none: '',
+  small: '8rem',
+  medium: '16rem',
+  extended: '100%',
+} as const
+
+export type InputSize = keyof typeof INPUT_SIZE
+
+interface InputLabelProps {
+  inputSize: InputSize
+}
+
 export const EditionContainer = styled.div`
   background-color: ${(props) => props.theme.white};
 `
@@ -125,7 +138,8 @@ export const ContentBlock = styled.div`
     border-radius: 4px;
     outline: 0;
 
-    &:focus {
+    &:not(:disabled):hover,
+    &:not(:disabled):focus {
       border-color: ${(props) => props.theme['green-500']};
     }
   }
@@ -135,4 +149,35 @@ export const LineBreaker = styled.div`
   margin: 1rem 0;
   display: flex;
   gap: 1rem;
+`
+
+export const InputLabel = styled.label<InputLabelProps>`
+  width: ${(props) => props.inputSize && INPUT_SIZE[props.inputSize]};
+  margin-top: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  span {
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.6;
+  }
+
+  input {
+    background-color: ${(props) => props.theme['gray-200']};
+    color: ${(props) => props.theme.dark};
+    width: 100%;
+    border: 1px solid ${(props) => props.theme['gray-300']};
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem; // espaçamento dentro do input
+    outline: none;
+
+    &:not(:disabled):hover,
+    &:not(:disabled):focus {
+      border-color: ${(props) => props.theme['green-500']};
+    }
+  }
 `
