@@ -1,4 +1,8 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+
+interface DashboardNavbarProps {
+  hasHeaderContent: boolean
+}
 
 export const DashboardContainer = styled.div`
   background-color: ${(props) => props.theme.white};
@@ -6,16 +10,24 @@ export const DashboardContainer = styled.div`
   height: calc(100vh - 5.6rem);
 `
 
-export const DashboardNavbar = styled.div`
+export const DashboardNavbar = styled.div<DashboardNavbarProps>`
   display: flex;
   align-items: center;
+  justify-content: center;
   background-color: rgba(58, 175, 131, 0.1);
   border-bottom: 2px solid rgba(58, 175, 131, 0.15);
 
+  ${(props) =>
+    props.hasHeaderContent &&
+    css`
+      padding: 1rem;
+    `}
+
   .buttonNavigate {
+    background-color: transparent;
     width: 35px;
     height: 35px;
-    margin: 10px 25px;
+    margin: 0 0.1rem;
     padding: 4px;
     border-radius: 100%;
     border: solid 0.2rem ${(props) => props.theme['green-500']};
@@ -26,11 +38,14 @@ export const DashboardNavbar = styled.div`
 
 export const UsersAligment = styled.div`
   flex: 1;
-
+  margin: 0 1rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
+  justify-content: space-between;
+  gap: 2rem;
+  overflow-x: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `
 
 export const IconPatient = styled.div`
@@ -54,6 +69,8 @@ export const CirclePatient = styled.div`
   background-color: #d9d9d9;
 `
 export const NamePatient = styled.h3`
+  width: 6rem;
+  text-align: center;
   margin: 5px 0px;
   font-weight: bold;
 `
@@ -108,6 +125,12 @@ export const Avatar = styled.div`
   border-radius: 100%;
   position: relative;
   outline: ${(props) => props.theme['green-500']} 2px solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: ${(props) => props.theme['green-500']};
+  font-size: 3rem;
 `
 export const Info = styled.div`
   background-color: ${(props) => props.theme.white};

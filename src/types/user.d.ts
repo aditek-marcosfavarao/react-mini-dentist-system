@@ -10,6 +10,7 @@ export interface UserType {
   type: string
   nextConsult: Date
   lastConsult: Date
+  lastEdition: Date
   allergy: boolean
   allergyType: string
   description: string

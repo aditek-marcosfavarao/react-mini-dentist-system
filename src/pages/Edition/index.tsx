@@ -3,6 +3,7 @@ import { Button } from '../../components/Buttons/Button'
 
 import { InputCheckbox } from '../../components/Inputs/InputCheckbox'
 import { InputForm } from '../../components/Inputs/InputForm'
+import { UserType } from '../../types/user'
 
 import { datalistOptions } from './data'
 
@@ -19,22 +20,31 @@ import {
 } from './styles'
 
 export function Edition() {
-  const lastEditionDate = new Date()
-  const lastProfileEdition = formatDate(lastEditionDate, 'simple')
+  const userLocalStorage = localStorage.getItem('user')
+  const user: UserType = JSON.parse(userLocalStorage!)
 
+  const userNameLetter = user.name.substring(0, 1)
+
+  const convertDate = (date: Date) => {
+    const data = date.toLocaleString()
+    return data.slice(0, 16)
+  }
   return (
     <>
       <EditionContainer>
         <EditionDisplay>
           <DisplayHeader>
-            <Avatar />
+            <Avatar contentLetter={userNameLetter} />
 
             <Info>
-              <h2>Marcos Adriano Lorencini Favarão</h2>
+              <h2>{user.fullName}</h2>
               <h3>
-                Tipo de tratamento: <span>Complete</span>
+                Tipo de tratamento: <span>{user.type}</span>
               </h3>
-              <time>Última edição: {lastProfileEdition}</time>
+              <time>
+                Última edição:{' '}
+                {formatDate(new Date(user.lastEdition), 'complete')}
+              </time>
             </Info>
           </DisplayHeader>
 
@@ -54,6 +64,7 @@ export function Edition() {
                   name="last-appointment"
                   type="datetime-local"
                   label="Última consulta"
+                  defaultValue={convertDate(user.lastConsult)}
                   inputSize={'medium'}
                 />
                 <InputForm
@@ -62,6 +73,7 @@ export function Edition() {
                   name="next-appointment"
                   type="datetime-local"
                   label="Próxima consulta"
+                  defaultValue={convertDate(user.nextConsult)}
                   inputSize={'medium'}
                 />
               </LineBreaker>
@@ -77,6 +89,7 @@ export function Edition() {
                   name="treatment-type"
                   list="treatments"
                   type="text"
+                  defaultValue={user.type}
                   label="Tipo de tratamento"
                   inputSize={'extended'}
                 />
@@ -95,6 +108,7 @@ export function Edition() {
                   name="treatment-start"
                   type="datetime-local"
                   label="Iniciado em"
+                  defaultValue={convertDate(user.lastConsult)}
                   inputSize={'medium'}
                 />
                 <InputForm
@@ -103,6 +117,7 @@ export function Edition() {
                   name="treatment-end"
                   type="datetime-local"
                   label="Finalizado em"
+                  defaultValue={convertDate(user.lastConsult)}
                   inputSize={'medium'}
                 />
               </LineBreaker>
@@ -118,6 +133,7 @@ export function Edition() {
                   name="name"
                   type="text"
                   label="Nome completo"
+                  defaultValue={user.fullName}
                   inputSize={'extended'}
                 />
               </LineBreaker>
@@ -128,6 +144,7 @@ export function Edition() {
                   id="cpf"
                   name="cpf"
                   type="text"
+                  defaultValue={user.cpf}
                   placeholder="000.000.000-00"
                   label="CPF"
                   inputSize={'medium'}
@@ -137,6 +154,7 @@ export function Edition() {
                   id="rg"
                   name="rg"
                   type="text"
+                  defaultValue={user.rg}
                   placeholder="00.000.000-0"
                   label="RG"
                   inputSize={'medium'}
@@ -147,6 +165,7 @@ export function Edition() {
                   name="birthdate"
                   type="text"
                   label="Nascimento"
+                  defaultValue={formatDate(new Date(user.birth), 'verySimple')}
                   inputSize={'small'}
                 />
                 <InputForm
@@ -155,6 +174,7 @@ export function Edition() {
                   name="age"
                   type="text"
                   label="Idade"
+                  defaultValue={user.age}
                   inputSize={'small'}
                 />
               </LineBreaker>
@@ -167,6 +187,7 @@ export function Edition() {
                   type="email"
                   placeholder="mail@mail.com"
                   label="E-mail"
+                  defaultValue={user.email}
                   inputSize={'extended'}
                 />
               </LineBreaker>
@@ -178,6 +199,7 @@ export function Edition() {
                   name="address"
                   type="text"
                   label="Endereço"
+                  defaultValue={user.address.place}
                   inputSize={'extended'}
                 />
               </LineBreaker>
@@ -189,6 +211,7 @@ export function Edition() {
                   name="address-number"
                   type="text"
                   label="N°"
+                  defaultValue={user.address.number}
                   inputSize={'small'}
                 />
                 <InputForm
@@ -205,6 +228,7 @@ export function Edition() {
                   name="city"
                   type="text"
                   label="Cidade"
+                  defaultValue={user.address.city}
                   inputSize={'medium'}
                 />
                 <InputForm
@@ -213,6 +237,7 @@ export function Edition() {
                   name="uf"
                   type="text"
                   label="UF"
+                  defaultValue={user.address.state}
                   inputSize={'small'}
                 />
                 <InputForm
@@ -221,6 +246,7 @@ export function Edition() {
                   name="cep"
                   type="text"
                   label="CEP"
+                  defaultValue={user.address.zipCode}
                   inputSize={'small'}
                 />
               </LineBreaker>
@@ -230,11 +256,20 @@ export function Edition() {
               <h3>Fármacos</h3>
 
               <LineBreaker>
-                <InputCheckbox label="Alérgicos" id="drugs" />
+                <InputCheckbox
+                  label="Alérgicos"
+                  id="drugs"
+                  defaultChecked={user.allergy}
+                />
               </LineBreaker>
 
               <LineBreaker>
-                <textarea cols={30} rows={10} placeholder="..." />
+                <textarea
+                  cols={30}
+                  rows={10}
+                  placeholder="..."
+                  defaultValue={user.allergyType}
+                />
               </LineBreaker>
             </ContentBlock>
 
@@ -242,7 +277,12 @@ export function Edition() {
               <h3>Observações</h3>
 
               <LineBreaker>
-                <textarea cols={30} rows={10} placeholder="..." />
+                <textarea
+                  cols={30}
+                  rows={10}
+                  placeholder="..."
+                  defaultValue={user.description}
+                />
               </LineBreaker>
             </ContentBlock>
           </EditionContent>

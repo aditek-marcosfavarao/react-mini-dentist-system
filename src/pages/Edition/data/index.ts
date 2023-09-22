@@ -1,6 +1,6 @@
 export const datalistOptions = [
   {
-    value: 'Complete',
+    value: 'Completo',
   },
   {
     value: 'Pedido de refinamento',
