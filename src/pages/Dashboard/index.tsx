@@ -88,36 +88,123 @@ export function Dashboard() {
     setTargetUser(user)
   }
 
+  const CardPatient = () => {
+    if (!users.length) {
+      return (
+        <DisplayHeader>
+          <Avatar />
+          <Info>
+            <h1>Não há pacientes cadastrados ainda</h1>
+          </Info>
+        </DisplayHeader>
+      )
+    } else if (targetUser.id == null) {
+      return (
+        <DisplayHeader>
+          <Avatar />
+          <Info>
+            <h1>Clique em um paciente</h1>
+          </Info>
+        </DisplayHeader>
+      )
+    } else {
+      return (
+        <DisplayHeader>
+          <Avatar />
+          <Info>
+            <h1>{targetUser.fullName}</h1>
+            <h2>Tratamento {targetUser.type}</h2>
+            <h3>
+              Próxima consulta: {formatDate(targetUser.nextConsult, 'complete')}
+            </h3>
+            <div>
+              <h3>
+                {targetUser.address && targetUser.address.place},
+                {targetUser.address && targetUser.address.number}{' '}
+              </h3>
+              <h3>
+                {targetUser.address && targetUser.address.city} /{' '}
+                {targetUser.address && targetUser.address.state}
+              </h3>
+            </div>
+          </Info>
+
+          <FileX
+            className="iconDeletCard"
+            weight="bold"
+            size={23}
+            onClick={() => {
+              return setIsPopupVisible(true)
+            }}
+          />
+          {isPopupVisible && (
+            <Popup
+              title="Ação Necessária"
+              nameButton="Confirmar"
+              buttonColorVariant={'red'}
+              onClose={() => setIsPopupVisible(false)}
+              id="modal"
+            >
+              <p>
+                A ação{' '}
+                <span style={{ color: theme?.['danger-500'] }}>não poderá</span>{' '}
+                ser desfeita. Deseja continuar?
+              </p>
+            </Popup>
+          )}
+          <PencilSimpleLine
+            className="iconEditCard"
+            weight="bold"
+            size={23}
+            onClick={() => {
+              navigate('/edition')
+            }}
+          />
+        </DisplayHeader>
+      )
+    }
+  }
+
+  // useEffect(() => {
+  //   CardPatient()
+  // }, [targetUser, users])
+
+  console.log('targetuser true ou false', targetUser.id !== null)
+  console.log('users true ou false', !users.length)
+  console.log('users', users)
+  console.log('targetuser', targetUser)
+
   return (
     <DashboardContainer>
       <DashboardNavbar>
         <CaretLeft className="buttonNavigate" weight="bold" />
 
         <UsersAligment>
-          {users.map((user) => {
-            return (
-              <>
-                <IconPatient key={user.id} onClick={() => saveUser(user)}>
-                  <CirclePatient>
-                    <h1>{user.name.substring(0, 1)}</h1>
-                  </CirclePatient>
-                  <NamePatient>{user.name}</NamePatient>
-                </IconPatient>
-              </>
-            )
-          })}
+          {users &&
+            users.map((user) => {
+              return (
+                <>
+                  <IconPatient key={user.id} onClick={() => saveUser(user)}>
+                    <CirclePatient>
+                      <h1>{user.name.substring(0, 1)}</h1>
+                    </CirclePatient>
+                    <NamePatient>{user.name}</NamePatient>
+                  </IconPatient>
+                </>
+              )
+            })}
         </UsersAligment>
 
         <CaretRight className="buttonNavigate" weight="bold" />
       </DashboardNavbar>
-
-      <DisplayHeader>
+      {CardPatient()}
+      {/* <DisplayHeader>
         <Avatar />
         <Info>
-          <h1>{targetUser.fullName}</h1>
-          <h2>Tratamento {targetUser.type}</h2>
+          <h1>{targetUser && targetUser.fullName}</h1>
+          <h2>Tratamento {targetUser && targetUser.type}</h2>
           <h3>
-            Próxima consulta: {formatDate(targetUser.nextConsult, 'simple')}
+            Próxima consulta: {formatDate(targetUser.nextConsult, 'complete')}
           </h3>
           <div>
             <h3>Rua Ernesto Benfodini de Morães, 512</h3>
@@ -156,7 +243,7 @@ export function Dashboard() {
             navigate('/edition')
           }}
         />
-      </DisplayHeader>
+      </DisplayHeader> */}
     </DashboardContainer>
   )
 }
