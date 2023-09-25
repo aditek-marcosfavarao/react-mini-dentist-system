@@ -314,198 +314,198 @@ const users: UserType[] = [
       zipCode: '69304542',
     },
   },
-  // {
-  //   id: 12,
-  //   name: 'Afonso',
-  //   fullName: 'Afonso de Jesus',
-  //   email: 'afonso.jesus@aditek.com.br',
-  //   cpf: '957.197.610-55',
-  //   rg: '39.685.322-5',
-  //   birth: new Date('29/07/1964'),
-  //   age: '59',
-  //   type: 'Completo',
-  //   nextConsult: new Date(),
-  //   lastConsult: new Date(),
-  //   lastEdition: new Date(),
-  //   allergy: false,
-  //   allergyType: '',
-  //   description: '',
-  //   address: {
-  //     place: 'Avenida Antônio Rodrigues',
-  //     number: '205',
-  //     city: 'Gurupi',
-  //     state: 'TO',
-  //     zipCode: '77420180',
-  //   },
-  // },
-  // {
-  //   id: 13,
-  //   name: 'Jesus',
-  //   fullName: 'Jesus Cristo',
-  //   email: 'jesus.cristo@aditek.com.br',
-  //   cpf: '471.155.620-67',
-  //   rg: '47.197.935-1',
-  //   birth: new Date('09/02/1982'),
-  //   age: '41',
-  //   type: 'Completo',
-  //   nextConsult: new Date(),
-  //   lastConsult: new Date(),
-  //   lastEdition: new Date(),
-  //   allergy: false,
-  //   allergyType: '',
-  //   description: '',
-  //   address: {
-  //     place: 'Rua Altevir Baptista de Lara',
-  //     number: '751',
-  //     city: 'Curitiba',
-  //     state: 'PR',
-  //     zipCode: '82710100',
-  //   },
-  // },
-  // {
-  //   id: 14,
-  //   name: 'Banana',
-  //   fullName: 'Banana Frita',
-  //   email: 'banana.frita@aditek.com.br',
-  //   cpf: '842.908.870-90',
-  //   rg: '27.583.812-2',
-  //   birth: new Date('31/07/1989'),
-  //   age: '34',
-  //   type: 'Completo',
-  //   nextConsult: new Date(),
-  //   lastConsult: new Date(),
-  //   lastEdition: new Date(),
-  //   allergy: false,
-  //   allergyType: '',
-  //   description: '',
-  //   address: {
-  //     place: 'Travessa Vitória',
-  //     number: '182',
-  //     city: 'Fortaleza',
-  //     state: 'CE',
-  //     zipCode: '60342013',
-  //   },
-  // },
-  // {
-  //   id: 15,
-  //   name: 'Sushi',
-  //   fullName: 'Sushi dos Cria',
-  //   email: 'sushi.doscria@aditek.com.br',
-  //   cpf: '055.069.090-55',
-  //   rg: '42.453.605-5',
-  //   birth: new Date('03/02/1968'),
-  //   age: '55',
-  //   type: 'Completo',
-  //   nextConsult: new Date(),
-  //   lastConsult: new Date(),
-  //   lastEdition: new Date(),
-  //   allergy: false,
-  //   allergyType: '',
-  //   description: '',
-  //   address: {
-  //     place: 'Rua Andorinhas',
-  //     number: '318',
-  //     city: 'Ariquemes',
-  //     state: 'RO',
-  //     zipCode: '76873264',
-  //   },
-  // },
-  // {
-  //   id: 16,
-  //   name: 'Pizza',
-  //   fullName: 'Pizza Steve',
-  //   email: 'pizza.steve@aditek.com.br',
-  //   cpf: '711.871.570-07',
-  //   rg: '39.747.800-8',
-  //   birth: new Date('20/01/1963'),
-  //   age: '60',
-  //   type: 'Completo',
-  //   nextConsult: new Date(),
-  //   lastConsult: new Date(),
-  //   lastEdition: new Date(),
-  //   allergy: false,
-  //   allergyType: '',
-  //   description: '',
-  //   address: {
-  //     place: 'Rua João Barbosa Farias',
-  //     number: '284',
-  //     city: 'Cuiabá',
-  //     state: 'MT',
-  //     zipCode: '78015245',
-  //   },
-  // },
-  // {
-  //   id: 15,
-  //   name: 'Milagre',
-  //   fullName: 'Milagre Milagroso',
-  //   email: 'milagre.milagroso@aditek.com.br',
-  //   cpf: '705.443.720-93',
-  //   rg: '13.390.158-0',
-  //   birth: new Date('28/02/1964'),
-  //   age: '59',
-  //   type: 'Completo',
-  //   nextConsult: new Date(),
-  //   lastConsult: new Date(),
-  //   lastEdition: new Date(),
-  //   allergy: false,
-  //   allergyType: '',
-  //   description: '',
-  //   address: {
-  //     place: 'Rua Alberto Luizari',
-  //     number: '814',
-  //     city: 'Ji-Paraná',
-  //     state: 'RO',
-  //     zipCode: '76906540',
-  //   },
-  // },
-  // {
-  //   id: 16,
-  //   name: 'Mathias',
-  //   fullName: 'Mathias Monteiro',
-  //   email: 'mathias.monteiro@aditek.com.br',
-  //   cpf: '488.526.490-18',
-  //   rg: '32.003.792-7',
-  //   birth: new Date('16/04/1980'),
-  //   age: '43',
-  //   type: 'Completo',
-  //   nextConsult: new Date(),
-  //   lastConsult: new Date(),
-  //   lastEdition: new Date(),
-  //   allergy: false,
-  //   allergyType: '',
-  //   description: '',
-  //   address: {
-  //     place: 'Rua Maria Alcione',
-  //     number: '115',
-  //     city: 'Caucaia',
-  //     state: 'CE',
-  //     zipCode: '61651010',
-  //   },
-  // },
-  // {
-  //   id: 16,
-  //   name: 'Beatriz',
-  //   fullName: 'Beatriz Bezerra',
-  //   email: 'beatriz.bezerra@aditek.com.br',
-  //   cpf: '768.725.740-54',
-  //   rg: '40.869.334-4',
-  //   birth: new Date('02/03/1993'),
-  //   age: '30',
-  //   type: 'Completo',
-  //   nextConsult: new Date(),
-  //   lastConsult: new Date(),
-  //   lastEdition: new Date(),
-  //   allergy: false,
-  //   allergyType: '',
-  //   description: '',
-  //   address: {
-  //     place: 'Rua dos Beijos',
-  //     number: '229',
-  //     city: 'Belo Horizonte',
-  //     state: 'MG',
-  //     zipCode: '31998520',
-  //   },
-  // },
+  {
+    id: 12,
+    name: 'Afonso',
+    fullName: 'Afonso de Jesus',
+    email: 'afonso.jesus@aditek.com.br',
+    cpf: '957.197.610-55',
+    rg: '39.685.322-5',
+    birth: new Date('29/07/1964'),
+    age: '59',
+    type: 'Completo',
+    nextConsult: new Date(),
+    lastConsult: new Date(),
+    lastEdition: new Date(),
+    allergy: false,
+    allergyType: '',
+    description: '',
+    address: {
+      place: 'Avenida Antônio Rodrigues',
+      number: '205',
+      city: 'Gurupi',
+      state: 'TO',
+      zipCode: '77420180',
+    },
+  },
+  {
+    id: 13,
+    name: 'Jesus',
+    fullName: 'Jesus Cristo',
+    email: 'jesus.cristo@aditek.com.br',
+    cpf: '471.155.620-67',
+    rg: '47.197.935-1',
+    birth: new Date('09/02/1982'),
+    age: '41',
+    type: 'Completo',
+    nextConsult: new Date(),
+    lastConsult: new Date(),
+    lastEdition: new Date(),
+    allergy: false,
+    allergyType: '',
+    description: '',
+    address: {
+      place: 'Rua Altevir Baptista de Lara',
+      number: '751',
+      city: 'Curitiba',
+      state: 'PR',
+      zipCode: '82710100',
+    },
+  },
+  {
+    id: 14,
+    name: 'Banana',
+    fullName: 'Banana Frita',
+    email: 'banana.frita@aditek.com.br',
+    cpf: '842.908.870-90',
+    rg: '27.583.812-2',
+    birth: new Date('31/07/1989'),
+    age: '34',
+    type: 'Completo',
+    nextConsult: new Date(),
+    lastConsult: new Date(),
+    lastEdition: new Date(),
+    allergy: false,
+    allergyType: '',
+    description: '',
+    address: {
+      place: 'Travessa Vitória',
+      number: '182',
+      city: 'Fortaleza',
+      state: 'CE',
+      zipCode: '60342013',
+    },
+  },
+  {
+    id: 15,
+    name: 'Sushi',
+    fullName: 'Sushi dos Cria',
+    email: 'sushi.doscria@aditek.com.br',
+    cpf: '055.069.090-55',
+    rg: '42.453.605-5',
+    birth: new Date('03/02/1968'),
+    age: '55',
+    type: 'Completo',
+    nextConsult: new Date(),
+    lastConsult: new Date(),
+    lastEdition: new Date(),
+    allergy: false,
+    allergyType: '',
+    description: '',
+    address: {
+      place: 'Rua Andorinhas',
+      number: '318',
+      city: 'Ariquemes',
+      state: 'RO',
+      zipCode: '76873264',
+    },
+  },
+  {
+    id: 16,
+    name: 'Pizza',
+    fullName: 'Pizza Steve',
+    email: 'pizza.steve@aditek.com.br',
+    cpf: '711.871.570-07',
+    rg: '39.747.800-8',
+    birth: new Date('20/01/1963'),
+    age: '60',
+    type: 'Completo',
+    nextConsult: new Date(),
+    lastConsult: new Date(),
+    lastEdition: new Date(),
+    allergy: false,
+    allergyType: '',
+    description: '',
+    address: {
+      place: 'Rua João Barbosa Farias',
+      number: '284',
+      city: 'Cuiabá',
+      state: 'MT',
+      zipCode: '78015245',
+    },
+  },
+  {
+    id: 15,
+    name: 'Milagre',
+    fullName: 'Milagre Milagroso',
+    email: 'milagre.milagroso@aditek.com.br',
+    cpf: '705.443.720-93',
+    rg: '13.390.158-0',
+    birth: new Date('28/02/1964'),
+    age: '59',
+    type: 'Completo',
+    nextConsult: new Date(),
+    lastConsult: new Date(),
+    lastEdition: new Date(),
+    allergy: false,
+    allergyType: '',
+    description: '',
+    address: {
+      place: 'Rua Alberto Luizari',
+      number: '814',
+      city: 'Ji-Paraná',
+      state: 'RO',
+      zipCode: '76906540',
+    },
+  },
+  {
+    id: 16,
+    name: 'Mathias',
+    fullName: 'Mathias Monteiro',
+    email: 'mathias.monteiro@aditek.com.br',
+    cpf: '488.526.490-18',
+    rg: '32.003.792-7',
+    birth: new Date('16/04/1980'),
+    age: '43',
+    type: 'Completo',
+    nextConsult: new Date(),
+    lastConsult: new Date(),
+    lastEdition: new Date(),
+    allergy: false,
+    allergyType: '',
+    description: '',
+    address: {
+      place: 'Rua Maria Alcione',
+      number: '115',
+      city: 'Caucaia',
+      state: 'CE',
+      zipCode: '61651010',
+    },
+  },
+  {
+    id: 16,
+    name: 'Beatriz',
+    fullName: 'Beatriz Bezerra',
+    email: 'beatriz.bezerra@aditek.com.br',
+    cpf: '768.725.740-54',
+    rg: '40.869.334-4',
+    birth: new Date('02/03/1993'),
+    age: '30',
+    type: 'Completo',
+    nextConsult: new Date(),
+    lastConsult: new Date(),
+    lastEdition: new Date(),
+    allergy: false,
+    allergyType: '',
+    description: '',
+    address: {
+      place: 'Rua dos Beijos',
+      number: '229',
+      city: 'Belo Horizonte',
+      state: 'MG',
+      zipCode: '31998520',
+    },
+  },
 ]
 
 export function Dashboard() {
@@ -517,37 +517,90 @@ export function Dashboard() {
   const theme = useContext(ThemeContext)
 
   const [targetUser, setTargetUser] = useState<UserType>({} as UserType)
-
+  const [apiData, setApiData] = useState<UserType[]>(users)
   useEffect(() => {}, [])
 
   function saveUser(user: UserType) {
     setTargetUser(user)
   }
 
-  const onDeletPatient = () => {
-    console.log('teste', targetUser)
+  const userNameLetter = (name: string) => {
+    return name.substring(0, 1)
+  }
 
-    const indice = users.indexOf(targetUser)
-    users.splice(indice, 1)
+  const onDeletePatient = () => {
+    const data = apiData
+    const targetUserToDelete = data.filter((user) => user.id !== targetUser.id)
+    setApiData(targetUserToDelete)
+
     setTargetUser({} as UserType)
     setIsPopupVisible(false)
-    console.log('users', users)
   }
 
   const CardPatient = () => {
-    if (!users.length) {
+    const isDataEmpty = !apiData.length
+    const hasUsersData = !isDataEmpty && targetUser.id == null
+    const hasUserSelected = !isDataEmpty && targetUser.id !== null
+
+    console.log('isDataEmpty', isDataEmpty)
+    console.log('hasUsersData', hasUsersData)
+    console.log('hasUserSelected', hasUserSelected)
+
+    const element = (
+      <>
+        <DisplayHeader>
+          <Avatar contentLetter="" />
+          <Info>
+            {isDataEmpty && <h1>Não há pacientes cadastrados ainda</h1>}
+            {hasUsersData && <h1>Clique em um paciente</h1>}
+            {hasUserSelected && (
+              <>
+                <h1>{targetUser.fullName}</h1>
+                <h2>Tratamento {targetUser.type}</h2>
+                <h3>
+                  Próxima consulta:{' '}
+                  {formatDate(targetUser.nextConsult, 'complete')}
+                </h3>
+                <div>
+                  <h3>
+                    {targetUser.address && targetUser.address.place},{' '}
+                    {targetUser.address && targetUser.address.number}
+                  </h3>
+                  <h3>
+                    {targetUser.address && targetUser.address.city} /{' '}
+                    {targetUser.address && targetUser.address.state}
+                  </h3>
+                </div>
+              </>
+            )}
+          </Info>
+        </DisplayHeader>
+      </>
+    )
+
+    return (
+      element || (
+        <>
+          <h1>hi</h1>
+        </>
+      )
+    )
+
+    if (isDataEmpty) {
       return (
         <DisplayHeader>
-          <Avatar />
+          <Avatar contentLetter="" />
           <Info>
             <h1>Não há pacientes cadastrados ainda</h1>
           </Info>
         </DisplayHeader>
       )
-    } else if (targetUser.id == null) {
+    }
+
+    if (hasUsersData) {
       return (
         <DisplayHeader>
-          <Avatar />
+          <Avatar contentLetter="" />
           <Info>
             <h1>Clique em um paciente</h1>
           </Info>
@@ -556,11 +609,7 @@ export function Dashboard() {
     } else {
       return (
         <DisplayHeader>
-          <div className="canseiDessaVida">
-            <Avatar>
-              <h1>{targetUser.name.substring(0, 1)}</h1>
-            </Avatar>
-          </div>
+          <Avatar contentLetter={userNameLetter(targetUser.name)} />
 
           <Info>
             <h1>{targetUser.fullName}</h1>
@@ -588,22 +637,7 @@ export function Dashboard() {
               return setIsPopupVisible(true)
             }}
           />
-          {isPopupVisible && (
-            <Popup
-              title="Ação Necessária"
-              nameButton="Confirmar"
-              buttonColorVariant={'red'}
-              onClose={() => setIsPopupVisible(false)}
-              id="modal"
-              onHandleDelete={() => onDeletPatient()}
-            >
-              <p>
-                A ação{' '}
-                <span style={{ color: theme?.['danger-500'] }}>não poderá</span>{' '}
-                ser desfeita. Deseja continuar?
-              </p>
-            </Popup>
-          )}
+
           <PencilSimpleLine
             className="iconEditCard"
             weight="bold"
@@ -642,14 +676,12 @@ export function Dashboard() {
         />
 
         <UsersAligment className="divElementRef" ref={divElementRef}>
-          {users &&
-            users.map((user) => {
+          {apiData &&
+            apiData.map((user) => {
               return (
                 <>
                   <IconPatient key={user.id} onClick={() => saveUser(user)}>
-                    <CirclePatient>
-                      <h1>{user.name.substring(0, 1)}</h1>
-                    </CirclePatient>
+                    <CirclePatient contentLetter={userNameLetter(user.name)} />
                     <NamePatient>{user.name}</NamePatient>
                   </IconPatient>
                 </>
@@ -667,6 +699,25 @@ export function Dashboard() {
       </DashboardNavbar>
 
       {CardPatient()}
+
+      <>
+        {isPopupVisible && (
+          <Popup
+            title="Ação Necessária"
+            nameButton="Confirmar"
+            buttonColorVariant={'red'}
+            onClose={() => setIsPopupVisible(false)}
+            id="modal"
+            onHandleAction={() => onDeletePatient()}
+          >
+            <p>
+              A ação{' '}
+              <span style={{ color: theme?.['danger-500'] }}>não poderá</span>{' '}
+              ser desfeita. Deseja continuar?
+            </p>
+          </Popup>
+        )}
+      </>
     </DashboardContainer>
   )
 }

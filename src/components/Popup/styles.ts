@@ -43,6 +43,7 @@ export const PopupWrapper = styled.div`
       max-width: 60rem;
       max-height: 60vh;
       overflow-y: auto;
+      margin-bottom: 0.5rem;
     }
     .buttons {
       display: flex;

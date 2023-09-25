@@ -4,6 +4,10 @@ interface DashboardNavbarProps {
   hasHeaderContent: boolean
 }
 
+interface LetterProps {
+  contentLetter: string
+}
+
 export const DashboardContainer = styled.div`
   background-color: ${(props) => props.theme.white};
   position: relative;
@@ -55,7 +59,7 @@ export const IconPatient = styled.div`
   align-items: center;
   margin: 5px 0px;
 `
-export const CirclePatient = styled.div`
+export const CirclePatient = styled.div<LetterProps>`
   z-index: 1;
   display: flex;
   flex-direction: column;
@@ -67,6 +71,22 @@ export const CirclePatient = styled.div`
   border-radius: 100%;
   color: ${(props) => props.theme['green-500']};
   background-color: #d9d9d9;
+  position: relative;
+
+  &::after {
+    content: '${(props) => props.contentLetter}';
+
+    color: ${(props) => props.theme['green-500']};
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.6;
+  }
 `
 export const NamePatient = styled.h3`
   width: 6rem;
@@ -118,7 +138,7 @@ export const DisplayHeader = styled.header`
     color: ${(props) => props.theme['green-500']};
   }
 `
-export const Avatar = styled.div`
+export const Avatar = styled.div<LetterProps>`
   background-color: #d9d9d9;
   width: 17rem;
   height: 17rem;
@@ -131,6 +151,21 @@ export const Avatar = styled.div`
   align-items: center;
   color: ${(props) => props.theme['green-500']};
   font-size: 3rem;
+
+  &::after {
+    content: '${(props) => props.contentLetter}';
+
+    color: ${(props) => props.theme['green-500']};
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1.6;
+  }
 `
 export const Info = styled.div`
   background-color: ${(props) => props.theme.white};
