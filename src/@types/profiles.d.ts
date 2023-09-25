@@ -1,4 +1,4 @@
-export interface Client {
+export interface Profile {
   id: string
   appointment: {
     lastApointment: Date

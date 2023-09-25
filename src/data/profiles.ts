@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid'
-import { Client } from '../@types/clients'
+import { Profile } from '../@types/profiles'
 
-export const clients: Client[] = [
+export const profiles: Profile[] = [
   {
     id: String(uuidv4()),
     appointment: {
@@ -9,7 +9,7 @@ export const clients: Client[] = [
       nextApointment: new Date(),
     },
     treatment: {
-      treatmentType: '',
+      treatmentType: 'Alinhador de reposição',
       treatmentEnd: new Date(),
       treatmentStart: new Date(),
     },
@@ -34,6 +34,7 @@ export const clients: Client[] = [
     medicineObservations: '',
     observations: '',
   },
+
   {
     id: String(uuidv4()),
     appointment: {
@@ -41,31 +42,32 @@ export const clients: Client[] = [
       nextApointment: new Date(),
     },
     treatment: {
-      treatmentType: '',
+      treatmentType: 'Self plan',
       treatmentEnd: new Date(),
       treatmentStart: new Date(),
     },
     user: {
       name: 'Maria de Lurdes do Calcário',
-      id: '01987654321',
+      id: '12345678901',
       document: '123456789',
       birthdate: new Date(),
       age: 186,
-      phone: '1634455667',
-      celphone: '16991223344',
+      phone: '1633334444',
+      celphone: '16933334444',
       email: '',
       address: {
-        address: 'Rua Eliseu Guimarães',
-        number: 180,
+        address: 'Rua Guilheme Tinoco',
+        number: 333,
         complement: '',
-        city: 'Leais Paulista',
-        uf: 'SP',
-        cep: '3450687',
+        city: 'Mineiro Verde',
+        uf: 'MG',
+        cep: '15333000',
       },
     },
     medicineObservations: '',
     observations: '',
   },
+
   {
     id: String(uuidv4()),
     appointment: {
@@ -73,26 +75,59 @@ export const clients: Client[] = [
       nextApointment: new Date(),
     },
     treatment: {
-      treatmentType: '',
+      treatmentType: 'Print 3D',
       treatmentEnd: new Date(),
       treatmentStart: new Date(),
     },
     user: {
       name: 'Solange Aparecida',
-      id: '01987654321',
-      document: '123456789',
+      id: '10987654321',
+      document: '109876543',
       birthdate: new Date(),
-      age: 186,
-      phone: '1634455667',
-      celphone: '16991223344',
+      age: 45,
+      phone: '1633335555',
+      celphone: '16933335555',
       email: '',
       address: {
-        address: 'Rua Eliseu Guimarães',
-        number: 180,
+        address: 'Rua Pontife Supremo',
+        number: 777,
         complement: '',
-        city: 'Leais Paulista',
+        city: 'Bragança Paulista',
         uf: 'SP',
-        cep: '3450687',
+        cep: '15444000',
+      },
+    },
+    medicineObservations: '',
+    observations: '',
+  },
+
+  {
+    id: String(uuidv4()),
+    appointment: {
+      lastApointment: new Date(),
+      nextApointment: new Date(),
+    },
+    treatment: {
+      treatmentType: 'Colagem indireta',
+      treatmentEnd: new Date(),
+      treatmentStart: new Date(),
+    },
+    user: {
+      name: 'Ricardo Salles dos Santos',
+      id: '11122233344',
+      document: '111222333',
+      birthdate: new Date(),
+      age: 33,
+      phone: '1633336666',
+      celphone: '16933336666',
+      email: '',
+      address: {
+        address: 'Rua Tinoco Cabraú',
+        number: 666,
+        complement: '',
+        city: 'Rodovia 666',
+        uf: 'SP',
+        cep: '1566600',
       },
     },
     medicineObservations: '',

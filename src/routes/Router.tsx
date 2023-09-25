@@ -4,6 +4,7 @@ import { DefaultLayout } from '../common/Layouts/DefaultLayout'
 
 import { Login } from '../pages/Login'
 import { Edition } from '../pages/Edition'
+// import { Dashboard } from '../pages/DashboardNew'
 import { Dashboard } from '../pages/Dashboard'
 
 export function Router() {

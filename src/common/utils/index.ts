@@ -1,23 +1,23 @@
 import { format } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 
+type DateFormat = 'simple' | 'complete'
+
 export function formatDate(
   date: Date = new Date(),
-  dateFormat: 'simple' | 'complete' | 'verySimple' = 'simple',
+  dateFormat: DateFormat = 'simple',
+  dateHours = false,
 ) {
   const dateExtension = {
     simple: "dd'/'MM'/'yyyy",
     complete: "dd 'de' MMMM 'de' yyyy",
-    verySimple: "dd'/'MM'/'yyyy",
   } as const
 
-  if (dateFormat !== 'verySimple') {
-    return format(date, `${dateExtension[dateFormat]} '-' HH:mm 'hrs'`, {
+  return format(
+    date,
+    `${dateExtension[dateFormat]} ${dateHours ? "'-' HH:mm 'hrs'" : ''}`,
+    {
       locale: ptBR,
-    })
-  } else {
-    return format(date, dateExtension[dateFormat], {
-      locale: ptBR,
-    })
-  }
+    },
+  )
 }

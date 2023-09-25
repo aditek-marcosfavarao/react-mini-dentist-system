@@ -4,28 +4,24 @@ import { createServer, Model } from 'miragejs'
 
 import { App } from './App.tsx'
 
-import { clients } from './data/index.ts'
+import { profiles } from './data/profiles.ts'
 
 createServer({
   models: {
-    client: Model,
+    profile: Model,
   },
 
   seeds(server) {
     server.db.loadData({
-      clients,
+      profiles,
     })
   },
 
   routes() {
     this.namespace = 'api'
 
-    this.get('/clients', () => {
-      return this.schema.all('client')
-    })
-
-    this.post('/login', () => {
-      return this.schema.create('client')
+    this.get('/profiles', () => {
+      return this.schema.all('profile')
     })
   },
 })
