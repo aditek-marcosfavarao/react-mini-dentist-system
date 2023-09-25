@@ -7,6 +7,7 @@ interface PopupProps {
   onClose: () => void
   id: string
   children: React.ReactNode
+  onHandleDelete: () => void
 }
 export function Popup({
   title,
@@ -14,6 +15,7 @@ export function Popup({
   buttonColorVariant,
   onClose,
   id = 'modal',
+  onHandleDelete,
   children,
 }: PopupProps) {
   const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -31,7 +33,10 @@ export function Popup({
               <button className="buttonCancel" onClick={onClose}>
                 Cancelar
               </button>
-              <CustomButton variant={buttonColorVariant}>
+              <CustomButton
+                variant={buttonColorVariant}
+                onClick={onHandleDelete}
+              >
                 {nameButton}
               </CustomButton>
             </div>
