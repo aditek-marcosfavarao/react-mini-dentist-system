@@ -7,7 +7,7 @@ interface PopupProps {
   onClose: () => void
   id: string
   children: React.ReactNode
-  onHandleDelete: () => void
+  onHandleAction: () => void
 }
 export function Popup({
   title,
@@ -15,7 +15,7 @@ export function Popup({
   buttonColorVariant,
   onClose,
   id = 'modal',
-  onHandleDelete,
+  onHandleAction,
   children,
 }: PopupProps) {
   const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -35,7 +35,7 @@ export function Popup({
               </button>
               <CustomButton
                 variant={buttonColorVariant}
-                onClick={onHandleDelete}
+                onClick={onHandleAction}
               >
                 {nameButton}
               </CustomButton>
