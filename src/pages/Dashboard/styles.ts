@@ -4,10 +4,6 @@ interface DashboardNavbarProps {
   hasHeaderContent: boolean
 }
 
-interface LetterProps {
-  contentLetter: string
-}
-
 export const DashboardContainer = styled.div`
   background-color: ${(props) => props.theme.white};
   position: relative;
@@ -29,10 +25,10 @@ export const DashboardNavbar = styled.div<DashboardNavbarProps>`
 
   .buttonNavigate {
     background-color: transparent;
-    width: 35px;
-    height: 35px;
+    width: 2rem;
+    height: 2rem;
     margin: 0 0.1rem;
-    padding: 4px;
+    padding: 0.1rem;
     border-radius: 100%;
     border: solid 0.2rem ${(props) => props.theme['green-500']};
     color: ${(props) => props.theme['green-500']};
@@ -59,35 +55,6 @@ export const IconPatient = styled.div`
   align-items: center;
   margin: 5px 0px;
 `
-export const CirclePatient = styled.div<LetterProps>`
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 80px;
-  height: 80px;
-  margin: 5px 0px;
-  border-radius: 100%;
-  color: ${(props) => props.theme['green-500']};
-  background-color: #d9d9d9;
-  position: relative;
-
-  &::after {
-    content: '${(props) => props.contentLetter}';
-
-    color: ${(props) => props.theme['green-500']};
-
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-
-    font-size: 2rem;
-    font-weight: 700;
-    line-height: 1.6;
-  }
-`
 export const NamePatient = styled.h3`
   width: 6rem;
   text-align: center;
@@ -98,9 +65,9 @@ export const DisplayHeader = styled.header`
   border: solid 2px ${(props) => props.theme['green-500']};
   border-radius: 5px;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 3rem;
   background-color: ${(props) => props.theme.white};
-  width: 80rem;
+  width: 80vw;
   height: 20rem;
   padding: 1rem;
   overflow: hidden;
@@ -127,7 +94,6 @@ export const DisplayHeader = styled.header`
     right: 1rem;
     cursor: pointer;
     color: ${(props) => props.theme['green-500']};
-    size: 20px;
   }
   .iconEditCard {
     z-index: 1;
@@ -137,60 +103,114 @@ export const DisplayHeader = styled.header`
     cursor: pointer;
     color: ${(props) => props.theme['green-500']};
   }
-`
-export const Avatar = styled.div<LetterProps>`
-  background-color: #d9d9d9;
-  width: 17rem;
-  height: 17rem;
-  border-radius: 100%;
-  position: relative;
-  outline: ${(props) => props.theme['green-500']} 2px solid;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: ${(props) => props.theme['green-500']};
-  font-size: 3rem;
 
-  &::after {
-    content: '${(props) => props.contentLetter}';
+  @media (max-width: 480px) {
+    padding: 0;
+    height: auto;
+    overflow: auto;
 
-    color: ${(props) => props.theme['green-500']};
+    display: block;
 
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    &::before {
+      content: '';
+      width: 9rem;
+      height: 20rem;
+      background-color: ${(props) => props.theme['green-500']};
+      position: absolute;
+      top: 0;
+      left: 0;
+      rotate: 50deg;
+      translate: 0 -10rem;
+    }
 
-    font-size: 5rem;
-    font-weight: 700;
-    line-height: 1.6;
+    .icons {
+      justify-content: space-evenly;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .iconDeletCard {
+      z-index: 1;
+      position: relative;
+      top: 0;
+      right: 0;
+      width: 3rem;
+      height: 3rem;
+      cursor: pointer;
+      color: ${(props) => props.theme['green-500']};
+    }
+    .iconEditCard {
+      z-index: 1;
+      position: relative;
+      top: 0;
+      right: 0;
+      width: 3rem;
+      height: 3rem;
+      cursor: pointer;
+      color: ${(props) => props.theme['green-500']};
+    }
   }
 `
+
 export const Info = styled.div`
   background-color: ${(props) => props.theme.white};
   flex: 1;
   margin: 2rem;
-  h1 {
-    font-size: 3rem;
-    line-height: 1.6;
-  }
-  h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    line-height: 1.6;
-    color: ${(props) => props.theme['green-500']};
-  }
-  div {
+
+  .aligment {
     display: flex;
     flex-direction: row;
     margin-top: 4rem;
     gap: 7rem;
   }
 
+  h1 {
+    font-size: 3rem;
+    line-height: 1.6;
+    position: relative;
+  }
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.6;
+    color: ${(props) => props.theme['green-500']};
+    position: relative;
+  }
+
   h3 {
     font-size: 1.5rem;
     font-weight: 700;
     line-height: 1.6;
+    position: relative;
+  }
+
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 1.7rem;
+      line-height: 1.6;
+      position: relative;
+    }
+    h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.6;
+      color: ${(props) => props.theme['green-500']};
+      position: relative;
+    }
+
+    .aligment {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.6;
+      position: relative;
+    }
   }
 `

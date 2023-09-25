@@ -1,11 +1,9 @@
 import {
   DashboardContainer,
   IconPatient,
-  CirclePatient,
   NamePatient,
   DashboardNavbar,
   DisplayHeader,
-  Avatar,
   Info,
   UsersAligment,
 } from './styles'
@@ -22,6 +20,7 @@ import { useNavigate } from 'react-router-dom'
 import { UserType } from '../../types/user'
 import { ThemeContext } from 'styled-components'
 import { formatDate } from '../../common/utils'
+import { Avatar } from '../../components/Avatar'
 
 type ClickType = true | false
 
@@ -551,6 +550,12 @@ export function Dashboard() {
             contentLetter={
               hasUserSelected ? userNameLetter(targetUser.name) : ''
             }
+            hasMargin={true}
+            variantSize={'large'}
+            variantFontSize={'large'}
+            variantColorBackground={'gray'}
+            variantColorBorder={'green'}
+            variantColorLetter={'green'}
           />
           <Info>
             {isDataEmpty && <h1>Não há pacientes cadastrados ainda</h1>}
@@ -563,7 +568,7 @@ export function Dashboard() {
                   Próxima consulta:{' '}
                   {formatDate(targetUser.nextConsult, 'complete')}
                 </h3>
-                <div>
+                <div className="aligment">
                   <h3>
                     {targetUser.address && targetUser.address.place},{' '}
                     {targetUser.address && targetUser.address.number}
@@ -576,8 +581,9 @@ export function Dashboard() {
               </>
             )}
           </Info>
+
           {hasUserSelected && (
-            <>
+            <div className="icons">
               <FileX
                 className="iconDeletCard"
                 weight="bold"
@@ -596,7 +602,7 @@ export function Dashboard() {
                   navigate('/edition')
                 }}
               />
-            </>
+            </div>
           )}
         </DisplayHeader>
       </>
@@ -640,7 +646,15 @@ export function Dashboard() {
               return (
                 <>
                   <IconPatient key={user.id} onClick={() => saveUser(user)}>
-                    <CirclePatient contentLetter={userNameLetter(user.name)} />
+                    <Avatar
+                      contentLetter={userNameLetter(user.name)}
+                      hasMargin={true}
+                      variantSize={'small'}
+                      variantFontSize={'small'}
+                      variantColorBackground={'gray'}
+                      variantColorBorder={'gray'}
+                      variantColorLetter={'green'}
+                    />
                     <NamePatient>{user.name}</NamePatient>
                   </IconPatient>
                 </>

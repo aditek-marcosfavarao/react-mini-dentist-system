@@ -3,18 +3,16 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import { formatDate } from '../../common/utils'
-import { api } from '../../common/services'
 
 import { Button } from '../../components/Buttons/Button'
 
-import { formSchema, FormData } from './data/FormValidator'
+import { formSchema, FormData } from './data/formValidator'
 import { datalistOptionsTratment, datalistOptionsUF } from './data/datalist'
 
 import {
   EditionContainer,
   EditionDisplay,
   DisplayHeader,
-  Avatar,
   Info,
   EditionContent,
   ContentHeader,
@@ -22,6 +20,7 @@ import {
   LineBreaker,
   InputLabel,
 } from './styles'
+import { Avatar } from '../../components/Avatar'
 
 export function Edition() {
   const [editForm, setEditForm] = React.useState(false)
@@ -69,31 +68,34 @@ export function Edition() {
     handleChangeFormEdition()
   }
 
-  React.useEffect(() => {
-    ;(async function () {
-      try {
-        const response = await api('/clients')
-      } catch (error) {
-        console.log('request error: ' + error)
-      }
-    })()
-  }, [])
-
   // formState -> conjunto de funções para manipulação dos inputs quando form submmitado
   console.log(formErrors)
 
-  const lastEditionDate = new Date()
-  const lastProfileEdition = formatDate(lastEditionDate, 'simple')
+  const user = JSON.parse(localStorage.getItem('user')!)
+
+  // const lastEditionDate = new Date()
+  // const lastProfileEdition = formatDate(lastEditionDate, 'simple')
   const isFormEditionEnabled = editForm
   const inputDisabled = !isFormEditionEnabled
-  const avatarLetter = 'M'
+
+  const userNameLetter = (name: string) => {
+    return name.substring(0, 1)
+  }
 
   return (
     <>
       <EditionContainer>
         <EditionDisplay>
           <DisplayHeader>
-            <Avatar contentLetter={avatarLetter} />
+            <Avatar
+              contentLetter={userNameLetter(user.name)}
+              hasMargin={false}
+              variantSize={'mid'}
+              variantFontSize={'small'}
+              variantColorBackground={'white'}
+              variantColorBorder={'green'}
+              variantColorLetter={'green'}
+            />
 
             <Info>
               <h2>{user.fullName}</h2>

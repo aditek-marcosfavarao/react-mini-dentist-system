@@ -26,7 +26,7 @@ export const PopupWrapper = styled.div`
     height: 100vh;
   }
   .popup {
-    padding: 20px;
+    padding: 1.25rem;
     background: #ffffff;
     position: relative;
     border-radius: 5px;
@@ -37,7 +37,7 @@ export const PopupWrapper = styled.div`
     }
     .content {
       border: solid 2px ${(props) => props.theme['gray-200']};
-      padding: 8px;
+      padding: 0.5rem;
       min-height: 40vh;
       min-width: 40vw;
       max-width: 60rem;
@@ -48,7 +48,7 @@ export const PopupWrapper = styled.div`
     .buttons {
       display: flex;
       justify-content: flex-end;
-      gap: 10px;
+      gap: 0.6rem;
     }
 
     .buttonCancel {

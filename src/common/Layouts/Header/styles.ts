@@ -6,8 +6,6 @@ export const HeaderContainer = styled.header`
   padding: 1rem;
   box-shadow: 0 2px 4px 0 ${(props) => props.theme['gray-300']};
 
-  /* position: fixed;
-  top: 0; */
   z-index: 9999;
 
   display: flex;

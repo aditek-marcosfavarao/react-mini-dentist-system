@@ -1,7 +1,6 @@
 import { styled } from 'styled-components'
 
 export const InputCheckboxContainer = styled.label`
-  /* display: block; */
   padding-top: 2px;
   padding-left: 2.5rem;
   cursor: pointer;
