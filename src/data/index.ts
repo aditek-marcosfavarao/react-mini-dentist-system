@@ -1,8 +1,9 @@
+import { v4 as uuidv4 } from 'uuid'
 import { Client } from '../@types/clients'
 
 export const clients: Client[] = [
   {
-    id: 1,
+    id: String(uuidv4()),
     appointment: {
       lastApointment: new Date(),
       nextApointment: new Date(),
@@ -34,7 +35,7 @@ export const clients: Client[] = [
     observations: '',
   },
   {
-    id: 2,
+    id: String(uuidv4()),
     appointment: {
       lastApointment: new Date(),
       nextApointment: new Date(),
@@ -46,6 +47,38 @@ export const clients: Client[] = [
     },
     user: {
       name: 'Maria de Lurdes do Calcário',
+      id: '01987654321',
+      document: '123456789',
+      birthdate: new Date(),
+      age: 186,
+      phone: '1634455667',
+      celphone: '16991223344',
+      email: '',
+      address: {
+        address: 'Rua Eliseu Guimarães',
+        number: 180,
+        complement: '',
+        city: 'Leais Paulista',
+        uf: 'SP',
+        cep: '3450687',
+      },
+    },
+    medicineObservations: '',
+    observations: '',
+  },
+  {
+    id: String(uuidv4()),
+    appointment: {
+      lastApointment: new Date(),
+      nextApointment: new Date(),
+    },
+    treatment: {
+      treatmentType: '',
+      treatmentEnd: new Date(),
+      treatmentStart: new Date(),
+    },
+    user: {
+      name: 'Solange Aparecida',
       id: '01987654321',
       document: '123456789',
       birthdate: new Date(),

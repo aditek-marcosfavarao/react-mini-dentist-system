@@ -23,6 +23,10 @@ createServer({
     this.get('/clients', () => {
       return this.schema.all('client')
     })
+
+    this.post('/login', () => {
+      return this.schema.create('client')
+    })
   },
 })
 

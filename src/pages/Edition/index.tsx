@@ -1,14 +1,14 @@
 import React from 'react'
-import * as zod from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { api } from '../../common/services'
 import { formatDate } from '../../common/utils'
+import { api } from '../../common/services'
 
 import { Button } from '../../components/Buttons/Button'
 
-import { datalistOptionsTratment, datalistOptionsUF } from './data'
+import { formSchema, FormData } from './data/FormValidator'
+import { datalistOptionsTratment, datalistOptionsUF } from './data/datalist'
 
 import {
   EditionContainer,
@@ -23,60 +23,6 @@ import {
   InputLabel,
 } from './styles'
 
-const editionFormValidationSchema = zod.object({
-  lastApointment: zod.coerce.date(),
-  nextApointment: zod.coerce.date(),
-  treatmentType: zod.string().min(1, { message: 'Treatment is required' }),
-  treatmentStart: zod.coerce.date(),
-  treatmentEnd: zod.coerce.date().optional().or(zod.literal('')),
-  userName: zod.string().min(1, 'User name is required').max(100).trim(),
-  userID: zod.string().min(1, 'User id is required').max(11).trim(),
-  userDocument: zod.string().min(1, 'User document is required').max(9).trim(),
-  userBirthdate: zod.coerce.date(),
-  userAge: zod.coerce
-    .number()
-    .min(1, { message: 'User age is required' })
-    .int()
-    .positive(),
-  userPhone: zod.string().trim().optional(),
-  userCelPhone: zod.string().trim().optional(),
-  userEmail: zod
-    .string()
-    .nonempty('O email é obrigatório')
-    .email({
-      message: 'Formato de e-mail inválido',
-    })
-    .toLowerCase()
-    .min(1, { message: 'Email is required' })
-    .trim(),
-  userAddress: zod.string().min(1, { message: 'User address is required' }),
-  userAddressNumber: zod.coerce
-    .number()
-    .min(1, { message: 'User address number is required' })
-    .int()
-    .positive(),
-  userAddressComplement: zod.string().trim().optional().or(zod.literal('')),
-  userAddressCity: zod
-    .string()
-    .min(1, { message: 'User address city is required' })
-    .trim(),
-  userAddressUF: zod
-    .string()
-    .toLowerCase()
-    .min(2, { message: 'User address UF is required' })
-    .max(2)
-    .trim(),
-  userAddressCEP: zod.coerce
-    .number()
-    .min(1, { message: 'User address number is required' })
-    .int()
-    .positive(),
-  drugObservations: zod.string().trim().optional(),
-  observations: zod.string().trim().optional(),
-})
-
-type LoginFormData = zod.infer<typeof editionFormValidationSchema>
-
 export function Edition() {
   const [editForm, setEditForm] = React.useState(false)
 
@@ -84,14 +30,14 @@ export function Edition() {
     register,
     handleSubmit,
     formState: { errors: formErrors },
-  } = useForm<LoginFormData>({
-    resolver: zodResolver(editionFormValidationSchema),
+  } = useForm<FormData>({
+    resolver: zodResolver(formSchema),
     defaultValues: {
       lastApointment: new Date(),
       nextApointment: new Date(),
       treatmentType: '',
       treatmentStart: new Date(),
-      treatmentEnd: new Date(),
+      treatmentEnd: '',
       userName: '',
       userID: '',
       userDocument: '',
@@ -118,10 +64,20 @@ export function Edition() {
     setEditForm((state) => !state)
   }
 
-  function onSubmitFormEdition(data: LoginFormData) {
+  function onSubmitFormEdition(data: FormData) {
     console.log(data)
     handleChangeFormEdition()
   }
+
+  React.useEffect(() => {
+    ;(async function () {
+      try {
+        const response = await api('/clients')
+      } catch (error) {
+        console.log('request error: ' + error)
+      }
+    })()
+  }, [])
 
   // formState -> conjunto de funções para manipulação dos inputs quando form submmitado
   console.log(formErrors)
@@ -131,6 +87,7 @@ export function Edition() {
   const isFormEditionEnabled = editForm
   const inputDisabled = !isFormEditionEnabled
   const avatarLetter = 'M'
+
   return (
     <>
       <EditionContainer>

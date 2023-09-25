@@ -105,7 +105,7 @@ export function Login() {
               </InputSettings>
             </InputLabel>
 
-            <Button buttonName="Entrar" type="submit" />
+            <Button buttonName="Entrar" type="submit" buttonColor="green" />
           </LoginForm>
 
           <LoginFooter>

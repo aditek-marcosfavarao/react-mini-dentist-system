@@ -1,5 +1,5 @@
 export interface Client {
-  id: number
+  id: string
   appointment: {
     lastApointment: Date
     nextApointment: Date
