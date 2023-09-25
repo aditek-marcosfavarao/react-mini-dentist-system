@@ -518,6 +518,7 @@ export function Dashboard() {
 
   const [targetUser, setTargetUser] = useState<UserType>({} as UserType)
   const [apiData, setApiData] = useState<UserType[]>(users)
+
   useEffect(() => {}, [])
 
   function saveUser(user: UserType) {
@@ -540,16 +541,17 @@ export function Dashboard() {
   const CardPatient = () => {
     const isDataEmpty = !apiData.length
     const hasUsersData = !isDataEmpty && targetUser.id == null
-    const hasUserSelected = !isDataEmpty && targetUser.id !== null
-
-    console.log('isDataEmpty', isDataEmpty)
-    console.log('hasUsersData', hasUsersData)
-    console.log('hasUserSelected', hasUserSelected)
+    const hasUserSelected =
+      !isDataEmpty && (targetUser.id != null || targetUser.id !== undefined)
 
     const element = (
       <>
         <DisplayHeader>
-          <Avatar contentLetter="" />
+          <Avatar
+            contentLetter={
+              hasUserSelected ? userNameLetter(targetUser.name) : ''
+            }
+          />
           <Info>
             {isDataEmpty && <h1>Não há pacientes cadastrados ainda</h1>}
             {hasUsersData && <h1>Clique em um paciente</h1>}
@@ -574,6 +576,28 @@ export function Dashboard() {
               </>
             )}
           </Info>
+          {hasUserSelected && (
+            <>
+              <FileX
+                className="iconDeletCard"
+                weight="bold"
+                size={23}
+                onClick={() => {
+                  return setIsPopupVisible(true)
+                }}
+              />
+
+              <PencilSimpleLine
+                className="iconEditCard"
+                weight="bold"
+                size={23}
+                onClick={() => {
+                  localStorage.setItem('user', JSON.stringify(targetUser))
+                  navigate('/edition')
+                }}
+              />
+            </>
+          )}
         </DisplayHeader>
       </>
     )
@@ -581,75 +605,10 @@ export function Dashboard() {
     return (
       element || (
         <>
-          <h1>hi</h1>
+          <h1>Não há dados disponíveis</h1>
         </>
       )
     )
-
-    if (isDataEmpty) {
-      return (
-        <DisplayHeader>
-          <Avatar contentLetter="" />
-          <Info>
-            <h1>Não há pacientes cadastrados ainda</h1>
-          </Info>
-        </DisplayHeader>
-      )
-    }
-
-    if (hasUsersData) {
-      return (
-        <DisplayHeader>
-          <Avatar contentLetter="" />
-          <Info>
-            <h1>Clique em um paciente</h1>
-          </Info>
-        </DisplayHeader>
-      )
-    } else {
-      return (
-        <DisplayHeader>
-          <Avatar contentLetter={userNameLetter(targetUser.name)} />
-
-          <Info>
-            <h1>{targetUser.fullName}</h1>
-            <h2>Tratamento {targetUser.type}</h2>
-            <h3>
-              Próxima consulta: {formatDate(targetUser.nextConsult, 'complete')}
-            </h3>
-            <div>
-              <h3>
-                {targetUser.address && targetUser.address.place},{' '}
-                {targetUser.address && targetUser.address.number}
-              </h3>
-              <h3>
-                {targetUser.address && targetUser.address.city} /{' '}
-                {targetUser.address && targetUser.address.state}
-              </h3>
-            </div>
-          </Info>
-
-          <FileX
-            className="iconDeletCard"
-            weight="bold"
-            size={23}
-            onClick={() => {
-              return setIsPopupVisible(true)
-            }}
-          />
-
-          <PencilSimpleLine
-            className="iconEditCard"
-            weight="bold"
-            size={23}
-            onClick={() => {
-              localStorage.setItem('user', JSON.stringify(targetUser))
-              navigate('/edition')
-            }}
-          />
-        </DisplayHeader>
-      )
-    }
   }
 
   const handleLeftClick = () => {
