@@ -7,7 +7,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 export function Button({
   buttonName = '',
-  buttonColor = 'dark',
+  buttonColor = 'gray',
   ...rest
 }: ButtonProps) {
   return (

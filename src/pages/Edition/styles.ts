@@ -13,10 +13,6 @@ interface InputLabelProps {
   inputSize: InputSize
 }
 
-interface AvatarProps {
-  contentLetter?: string
-}
-
 export const EditionContainer = styled.div`
   background-color: ${(props) => props.theme.white};
 `
@@ -82,30 +78,6 @@ export const Info = styled.div`
     text-align: right;
     font-size: 0.875rem;
     font-weight: 600;
-    line-height: 1.6;
-  }
-`
-
-export const Avatar = styled.div<AvatarProps>`
-  background-color: ${(props) => props.theme.white};
-  width: 6rem;
-  height: 6rem;
-  border: 1px solid ${(props) => props.theme.white};
-  border-radius: 50%;
-  position: relative;
-  outline: ${(props) => props.theme['green-500']} 2px solid;
-
-  &::after {
-    content: '${(props) => String(props.contentLetter)}';
-    color: ${(props) => props.theme['green-500']};
-
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-
-    font-size: 2rem;
-    font-weight: 700;
     line-height: 1.6;
   }
 `

@@ -7,7 +7,7 @@ import {
 } from '@phosphor-icons/react'
 
 import { api } from '../../services/api'
-import { formatDate } from '../../common/utils'
+// import { formatDate } from '../../common/utils'
 
 import { Popup } from '../../components/Popup'
 
@@ -16,18 +16,15 @@ import { Profile } from '../../@types/profiles'
 import {
   DashboardContainer,
   IconPatient,
-  CirclePatient,
   NamePatient,
   DashboardNavbar,
   DisplayHeader,
-  Avatar,
   Info,
   UsersAligment,
-  CardInfoIcons,
   ModalContent,
-  Card,
-  DashboardContent,
 } from './styles'
+
+import { Avatar } from '../../components/Avatar'
 
 export function Dashboard() {
   const navbarElementsCapacity = 10
@@ -75,7 +72,15 @@ export function Dashboard() {
     return (
       <>
         <IconPatient onClick={() => handleSelectProfile(_profile)}>
-          <CirclePatient contentLetter={profileLetter} />
+          <Avatar
+            contentLetter={profileLetter}
+            hasMargin={true}
+            variantSize={'small'}
+            variantFontSize={'small'}
+            variantColorBackground={'gray'}
+            variantColorBorder={'gray'}
+            variantColorLetter={'green'}
+          />
           <NamePatient>{profileName}</NamePatient>
         </IconPatient>
       </>
@@ -94,8 +99,15 @@ export function Dashboard() {
     const renderElement = (
       <>
         <DisplayHeader>
-          <Avatar contentLetter={avatarLetter} />
-
+          <Avatar
+            contentLetter={avatarLetter}
+            hasMargin={true}
+            variantSize={'large'}
+            variantFontSize={'large'}
+            variantColorBackground={'gray'}
+            variantColorBorder={'green'}
+            variantColorLetter={'green'}
+          />
           <Info>
             {isDataEmpty && <h1>Não há pacientes cadastrados ainda</h1>}
             {hasProfileData && <h1>Clique em um paciente</h1>}
@@ -103,9 +115,9 @@ export function Dashboard() {
             {isProfileSelected && (
               <>
                 <h1>{profile.user.name}</h1>
-                <h2>Tratamento: {profile.treatment.treatmentType}</h2>
-                <h3>Próxima consulta: 0</h3>
-                <div>
+                <h2>Tratamento {profile.treatment.treatmentType}</h2>
+                <h3>Próxima consulta: 00</h3>
+                <div className="aligment">
                   <h3>
                     {profile.user.address.address &&
                       profile.user.address.address}
@@ -120,48 +132,29 @@ export function Dashboard() {
               </>
             )}
           </Info>
-          {/* <Info>
-            {isDataEmpty && <h1>Não há pacientes cadastrados ainda</h1>}
 
-            {hasUsersData && <h1>Clique em um paciente</h1>}
+          {isProfileSelected && (
+            <div className="icons">
+              <FileX
+                className="iconDeletCard"
+                weight="bold"
+                size={23}
+                onClick={() => {
+                  return setIsPopupVisible(true)
+                }}
+              />
 
-            {hasUserSelected && (
-              <>
-                <h1>{profile.user.name}</h1>
-                <h2>Tratamento: {profile.treatment.treatmentType}</h2>
-                <h3>Próxima consulta: {nextAppointment}</h3>
-                <div>
-                  <h3>
-                    {profile.user.address.address &&
-                      profile.user.address.address}
-                    ,{' '}
-                    {profile.user.address.number && profile.user.address.number}
-                  </h3>
-                  <h3>
-                    {profile.user.address.city && profile.user.address.city} /{' '}
-                    {profile.user.address.uf && profile.user.address.uf}
-                  </h3>
-                </div>
-
-                <CardInfoIcons>
-                  <FileX
-                    className="iconDeletCard"
-                    onClick={() => {
-                      return setIsPopupVisible(true)
-                    }}
-                  />
-
-                  <PencilSimpleLine
-                    className="iconEditCard"
-                    // onClick={() => {
-                    //   localStorage.setItem('user', JSON.stringify(targetUser))
-                    //   navigate('/edition')
-                    // }}
-                  />
-                </CardInfoIcons>
-              </>
-            )}
-          </Info> */}
+              <PencilSimpleLine
+                className="iconEditCard"
+                weight="bold"
+                size={23}
+                onClick={() => {
+                  localStorage.setItem('user', JSON.stringify(profile))
+                  // navigate('/edition')
+                }}
+              />
+            </div>
+          )}
         </DisplayHeader>
       </>
     )
@@ -183,13 +176,16 @@ export function Dashboard() {
   const hasProfilesInList = !profilesList.length
   const hasManyProfiles = profilesList.length > navbarElementsCapacity
 
-  const avatarLetter = 'M'
   return (
     <DashboardContainer>
       <DashboardNavbar hasHeaderContent={hasProfilesInList}>
         <CaretLeft onClick={handleLeftClick} />
 
-        <UsersAligment ref={divElementRef} hasManyProfiles={hasManyProfiles}>
+        <UsersAligment
+          className="divElementRef"
+          ref={divElementRef}
+          hasManyProfiles={hasManyProfiles}
+        >
           {profilesList &&
             profilesList.map((_profile) => {
               return <Profile key={_profile.id} {..._profile} />
@@ -199,7 +195,7 @@ export function Dashboard() {
         <CaretRight onClick={handleRightClick} />
       </DashboardNavbar>
 
-      <DashboardContent></DashboardContent>
+      <CardPatient />
 
       {/* modal */}
       <>

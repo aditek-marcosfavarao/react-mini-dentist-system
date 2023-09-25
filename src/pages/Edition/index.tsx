@@ -2,7 +2,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { formatDate } from '../../common/utils'
+// import { formatDate } from '../../common/utils'
 
 import { Button } from '../../components/Buttons/Button'
 
@@ -13,7 +13,6 @@ import {
   EditionContainer,
   EditionDisplay,
   DisplayHeader,
-  Avatar,
   Info,
   EditionContent,
   ContentHeader,
@@ -21,6 +20,7 @@ import {
   LineBreaker,
   InputLabel,
 } from './styles'
+import { Avatar } from '../../components/Avatar'
 
 export function Edition() {
   const [editForm, setEditForm] = React.useState(false)
@@ -71,25 +71,38 @@ export function Edition() {
   // formState -> conjunto de funções para manipulação dos inputs quando form submmitado
   console.log(formErrors)
 
-  const lastEditionDate = new Date()
-  const lastProfileEdition = formatDate(lastEditionDate, 'simple')
+  // const lastEditionDate = new Date()
+  // const lastProfileEdition = formatDate(lastEditionDate, 'simple')
   const isFormEditionEnabled = editForm
   const inputDisabled = !isFormEditionEnabled
-  const avatarLetter = 'M'
+
+  // const userNameLetter = (name: string) => {
+  //   return name.substring(0, 1)
+  // }
+
+  // verificação de datas não está funcionando
 
   return (
     <>
       <EditionContainer>
         <EditionDisplay>
           <DisplayHeader>
-            <Avatar contentLetter={avatarLetter} />
+            <Avatar
+              contentLetter={`A`}
+              hasMargin={false}
+              variantSize={'mid'}
+              variantFontSize={'small'}
+              variantColorBackground={'white'}
+              variantColorBorder={'green'}
+              variantColorLetter={'green'}
+            />
 
             <Info>
               <h2>Marcos Adriano Lorencini Favarão</h2>
               <h3>
                 Tipo de tratamento: <span>Completo</span>
               </h3>
-              <time>Última edição: {lastProfileEdition}</time>
+              <time>Última edição: 0</time>
             </Info>
           </DisplayHeader>
 
