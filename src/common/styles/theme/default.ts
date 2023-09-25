@@ -3,6 +3,8 @@ export const defaultTheme = {
   black: '#000000',
   dark: '#3f3f3f',
 
+  'dark-500': '#3f3f3f',
+
   'gray-100': '#f9f9f9',
   'gray-200': '#efefef',
   'gray-300': '#c7c7c7',

@@ -1,25 +1,78 @@
-import { Envelope, EyeSlash } from '@phosphor-icons/react'
+import React from 'react'
+import * as zod from 'zod'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Envelope, Eye, EyeSlash } from '@phosphor-icons/react'
 
-import { InputLogin } from '../../components/Inputs/InputLogin'
 import { Button } from '../../components/Buttons/Button'
 
 import {
   LoginContainer,
   LoginDisplay,
   LoginHeader,
-  LoginForm,
   LoginFooter,
+  LoginForm,
+  InputLabel,
+  InputSettings,
 } from './styles'
 
-import { useNavigate } from 'react-router-dom'
+interface IconProps {
+  onClickEvent: () => void
+}
+
+const loginFormValidationSchema = zod.object({
+  email: zod
+    .string()
+    .email({
+      message: 'Must be a valid email',
+    })
+    .min(1, { message: 'Email is required' }),
+  password: zod.string().min(1, { message: 'Password is required' }),
+})
+
+type LoginFormData = zod.infer<typeof loginFormValidationSchema>
 
 export function Login() {
-  const navigate = useNavigate()
-  function handleSubmitLoginForm(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    navigate('/dashboard')
+  const {
+    register,
+    handleSubmit,
+    formState: { errors: formErrors },
+    reset,
+  } = useForm<LoginFormData>({
+    resolver: zodResolver(loginFormValidationSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
+    shouldFocusError: true,
+  })
+
+  const [passwordVisibility, setPasswordVisibility] = React.useState(false)
+
+  function handleSubmitLoginForm(data: LoginFormData) {
+    console.log(data)
+    reset()
   }
 
+  function handleChangePasswordVisibility() {
+    setPasswordVisibility((state) => !state)
+  }
+
+  function PasswordIcon({ onClickEvent }: IconProps) {
+    return isPasswordVisible ? (
+      <Eye onClick={onClickEvent} />
+    ) : (
+      <EyeSlash onClick={onClickEvent} />
+    )
+  }
+
+  // formState -> conjunto de funções para manipulação dos inputs quando form submmitado
+  console.log(formErrors)
+
+  const isPasswordVisible = passwordVisibility
+  const inputPasswordType = isPasswordVisible ? 'text' : 'password'
   return (
     <>
       <LoginContainer>
@@ -29,27 +82,30 @@ export function Login() {
             <h2>Bem vindo ao nosso sistema!</h2>
           </LoginHeader>
 
-          <LoginForm action="" onSubmit={handleSubmitLoginForm}>
-            <InputLogin
-              required
-              id="email"
-              type="email"
-              name="email"
-              label="e-mail"
-              // maxLength={10}
-              iconLeft={() => <Envelope />}
-            />
+          <LoginForm action="" onSubmit={handleSubmit(handleSubmitLoginForm)}>
+            <InputLabel htmlFor="email">
+              <span>Email</span>
 
-            <InputLogin
-              required
-              id="password"
-              type="password"
-              name="password"
-              label="senha"
-              iconLeft={() => <EyeSlash />}
-            />
+              <InputSettings>
+                <Envelope />
+                <input type="email" id="email" {...register('email')} />
+              </InputSettings>
+            </InputLabel>
 
-            <Button type="submit" buttonName="entrar" />
+            <InputLabel htmlFor="password">
+              <span>Senha</span>
+
+              <InputSettings pointerOnHoverIcon>
+                <PasswordIcon onClickEvent={handleChangePasswordVisibility} />
+                <input
+                  type={inputPasswordType}
+                  id="password"
+                  {...register('password')}
+                />
+              </InputSettings>
+            </InputLabel>
+
+            <Button buttonName="Entrar" type="submit" buttonColor="green" />
           </LoginForm>
 
           <LoginFooter>
