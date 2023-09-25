@@ -3,11 +3,10 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import { formatDate } from '../../common/utils'
-import { api } from '../../common/services'
 
 import { Button } from '../../components/Buttons/Button'
 
-import { formSchema, FormData } from './data/FormValidator'
+import { formSchema, FormData } from './data/formValidator'
 import { datalistOptionsTratment, datalistOptionsUF } from './data/datalist'
 
 import {
@@ -52,7 +51,7 @@ export function Edition() {
       userAddressCity: '',
       userAddressUF: '',
       userAddressCEP: 0,
-      drugObservations: '',
+      medicineObservations: '',
       observations: '',
     },
     mode: 'onBlur',
@@ -68,16 +67,6 @@ export function Edition() {
     console.log(data)
     handleChangeFormEdition()
   }
-
-  React.useEffect(() => {
-    ;(async function () {
-      try {
-        const response = await api('/clients')
-      } catch (error) {
-        console.log('request error: ' + error)
-      }
-    })()
-  }, [])
 
   // formState -> conjunto de funções para manipulação dos inputs quando form submmitado
   console.log(formErrors)
@@ -96,14 +85,11 @@ export function Edition() {
             <Avatar contentLetter={avatarLetter} />
 
             <Info>
-              <h2>{user.fullName}</h2>
+              <h2>Marcos Adriano Lorencini Favarão</h2>
               <h3>
-                Tipo de tratamento: <span>{user.type}</span>
+                Tipo de tratamento: <span>Completo</span>
               </h3>
-              <time>
-                Última edição:{' '}
-                {formatDate(new Date(user.lastEdition), 'complete')}
-              </time>
+              <time>Última edição: {lastProfileEdition}</time>
             </Info>
           </DisplayHeader>
 
@@ -397,7 +383,7 @@ export function Edition() {
                   cols={30}
                   rows={10}
                   placeholder="..."
-                  {...register('drugObservations')}
+                  {...register('medicineObservations')}
                 />
               </LineBreaker>
             </ContentBlock>

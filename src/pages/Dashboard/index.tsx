@@ -1,3 +1,20 @@
+import React, { useContext, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { ThemeContext } from 'styled-components'
+import {
+  CaretLeft,
+  CaretRight,
+  FileX,
+  PencilSimpleLine,
+} from '@phosphor-icons/react'
+
+import { formatDate } from '../../common/utils'
+import { api } from '../../common/services'
+
+import { Popup } from '../../components/Popup'
+
+import { UserType } from '../../types/user'
+
 import {
   DashboardContainer,
   IconPatient,
@@ -9,21 +26,6 @@ import {
   Info,
   UsersAligment,
 } from './styles'
-import {
-  CaretLeft,
-  CaretRight,
-  FileX,
-  PencilSimpleLine,
-} from '@phosphor-icons/react'
-import { Popup } from '../../components/Popup'
-import { useState, useEffect, useContext, useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
-
-import { UserType } from '../../types/user'
-import { ThemeContext } from 'styled-components'
-import { formatDate } from '../../common/utils'
-
-type ClickType = true | false
 
 const users: UserType[] = [
   {
@@ -509,16 +511,23 @@ const users: UserType[] = [
 ]
 
 export function Dashboard() {
-  const [isPopupVisible, setIsPopupVisible] = useState<ClickType>(false)
   const navigate = useNavigate()
+  const theme = useContext(ThemeContext)
 
   const divElementRef = useRef<HTMLDivElement | null>(null)
 
-  const theme = useContext(ThemeContext)
+  const [isPopupVisible, setIsPopupVisible] = React.useState(false)
+  const [targetUser, setTargetUser] = React.useState<UserType>({} as UserType)
 
-  const [targetUser, setTargetUser] = useState<UserType>({} as UserType)
+  function handleLeftClick() {
+    if (typeof divElementRef === 'undefined') return
 
-  useEffect(() => {}, [])
+    divElementRef.current!.scrollLeft -= divElementRef.current!.offsetWidth
+  }
+
+  function handleRightClick() {
+    divElementRef.current!.scrollLeft += divElementRef.current!.offsetWidth
+  }
 
   function saveUser(user: UserType) {
     setTargetUser(user)
@@ -533,6 +542,17 @@ export function Dashboard() {
     setIsPopupVisible(false)
     console.log('users', users)
   }
+
+  React.useEffect(() => {
+    ;(async function () {
+      try {
+        const response = await api('/clients')
+        console.log(response.data)
+      } catch (error) {
+        console.log('request error: ' + error)
+      }
+    })()
+  }, [])
 
   const CardPatient = () => {
     if (!users.length) {
@@ -618,27 +638,14 @@ export function Dashboard() {
     }
   }
 
-  const handleLeftClick = () => {
-    if (typeof divElementRef !== 'undefined') {
-      divElementRef.current!.scrollLeft -= divElementRef.current!.offsetWidth
-    }
-  }
-
-  const handleRightClick = () => {
-    divElementRef.current!.scrollLeft += divElementRef.current!.offsetWidth
-  }
-
   const hasUsersList = !users.length
-
   return (
     <DashboardContainer>
       <DashboardNavbar hasHeaderContent={hasUsersList}>
         <CaretLeft
           className="buttonNavigate"
           weight="bold"
-          onClick={() => {
-            handleLeftClick()
-          }}
+          onClick={handleLeftClick}
         />
 
         <UsersAligment className="divElementRef" ref={divElementRef}>
@@ -660,9 +667,7 @@ export function Dashboard() {
         <CaretRight
           className="buttonNavigate"
           weight="bold"
-          onClick={() => {
-            handleRightClick()
-          }}
+          onClick={handleRightClick}
         />
       </DashboardNavbar>
 

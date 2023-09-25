@@ -48,7 +48,7 @@ export const formSchema = zod.object({
     .min(1, { message: 'User address number is required' })
     .int()
     .positive(),
-  drugObservations: zod.string().trim().optional(),
+  medicineObservations: zod.string().trim().optional(),
   observations: zod.string().trim().optional(),
 })
 
@@ -74,6 +74,6 @@ export const defaultFormValues = {
   userAddressCity: '',
   userAddressUF: '',
   userAddressCEP: 0,
-  drugObservations: '',
+  medicineObservations: '',
   observations: '',
 }
