@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import * as zod from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -34,6 +35,8 @@ const loginFormValidationSchema = zod.object({
 type LoginFormData = zod.infer<typeof loginFormValidationSchema>
 
 export function Login() {
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
@@ -54,8 +57,11 @@ export function Login() {
 
   async function handleSubmitLoginForm(data: LoginFormData) {
     try {
-      // const response = await api.post('/login')
-      console.log(data)
+      const response = await api.post('/login', data)
+
+      if (response.status === 202) {
+        navigate('/dashboard')
+      }
     } catch (error) {
       console.error(error)
     } finally {

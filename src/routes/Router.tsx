@@ -8,14 +8,6 @@ import { Edition } from '../pages/Edition'
 import { Dashboard } from '../pages/Dashboard'
 
 export function Router() {
-  // function RenderRoute() {
-  //   return (
-  //     <>
-  //       <h1>Route element</h1>
-  //     </>
-  //   )
-  // }
-
   return (
     <>
       <Routes>

@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { createServer, Model } from 'miragejs'
+import { createServer, Model, Response } from 'miragejs'
 
 import { App } from './App.tsx'
 
@@ -10,6 +10,8 @@ const PROFILE_LOGIN = {
   email: 'admin@admin.com',
   password: '123456',
 }
+
+type RequestLogin = typeof PROFILE_LOGIN
 
 createServer({
   models: {
@@ -29,8 +31,18 @@ createServer({
       return this.schema.all('profile')
     })
 
-    this.post('/login', (request, response) => {
-      console.log(response)
+    this.post('/login', (schema, request) => {
+      const requestedLogin: RequestLogin = JSON.parse(request.requestBody)
+
+      if (requestedLogin?.email !== PROFILE_LOGIN.email) {
+        return new Response(401)
+      }
+
+      if (requestedLogin?.password !== PROFILE_LOGIN.password) {
+        return new Response(401)
+      }
+
+      return new Response(202)
     })
   },
 })
