@@ -180,12 +180,12 @@ export const Info = styled.div`
   }
 
   h1 {
-    font-size: 3rem;
+    font-size: 2.4rem;
     line-height: 1.6;
     position: relative;
   }
   h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 700;
     line-height: 1.6;
     color: ${(props) => props.theme['green-500']};
@@ -193,7 +193,7 @@ export const Info = styled.div`
   }
 
   h3 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 700;
     line-height: 1.6;
   }
