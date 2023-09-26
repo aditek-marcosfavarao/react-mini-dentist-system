@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+
+import { InputMask } from 'primereact/inputmask'
 
 // import { formatDate } from '../../common/utils'
 
@@ -87,7 +90,22 @@ export function Edition() {
 
   // verificação de datas não está funcionando
 
+  const [valueCPF, setValueCPF] = React.useState<any>(
+    String(profileData.user.id),
+  )
+  const [valueRG, setValueRG] = React.useState<any>(
+    String(profileData.user.document),
+  )
+  const [valueTelefone, setValueTelefone] = React.useState<any>()
+  const [valueCelular, setValueCelular] = React.useState<any>(
+    String(profileData.user.celphone),
+  )
+  const [valueCep, setValueCep] = React.useState<any>(
+    String(profileData.user.address.cep),
+  )
+
   const profileLetter = profileData?.user?.name.substring(0, 1)
+
   return (
     <>
       <EditionContainer>
@@ -233,29 +251,35 @@ export function Edition() {
               <LineBreaker>
                 <InputLabel htmlFor="userID" inputSize="medium">
                   <span>CPF</span>
-
-                  <input
+                  <InputMask
                     disabled={inputDisabled}
                     id="userID"
-                    type="text"
-                    maxLength={11}
-                    placeholder="000.000.000-00"
-                    {...register('userID')}
-                    value={String(profileData.user.id)}
+                    value={valueCPF}
+                    mask="999.999.999-99"
+                    placeholder="999.999.999-99"
+                    {...(register('userID'),
+                    {
+                      onChange(event) {
+                        setValueCPF(event.target.value)
+                      },
+                    })}
                   />
                 </InputLabel>
-
                 <InputLabel htmlFor="userDocument" inputSize="medium">
                   <span>RG</span>
-
-                  <input
+                  <InputMask
                     disabled={inputDisabled}
                     id="userDocument"
-                    type="text"
+                    value={valueRG}
                     maxLength={9}
-                    placeholder="00.000.000-0"
-                    {...register('userDocument')}
-                    value={String(profileData.user.document)}
+                    mask="99.999.999-9"
+                    placeholder="99.999.999-9"
+                    {...(register('userID'),
+                    {
+                      onChange(event) {
+                        setValueRG(event.target.value)
+                      },
+                    })}
                   />
                 </InputLabel>
 
@@ -288,24 +312,35 @@ export function Edition() {
               <LineBreaker>
                 <InputLabel htmlFor="userPhone" inputSize="medium">
                   <span>Telefone</span>
-
-                  <input
+                  <InputMask
                     disabled={inputDisabled}
                     id="userPhone"
-                    type="text"
-                    {...register('userPhone')}
+                    value={valueTelefone}
+                    maxLength={9}
+                    mask="(99) 9999-9999"
+                    placeholder="(99) 9999-9999"
+                    {...(register('userPhone'),
+                    {
+                      onChange(event) {
+                        setValueTelefone(event.target.value)
+                      },
+                    })}
                   />
                 </InputLabel>
-
                 <InputLabel htmlFor="userCelPhone" inputSize="medium">
                   <span>Celular</span>
-
-                  <input
+                  <InputMask
                     disabled={inputDisabled}
                     id="userCelPhone"
-                    type="text"
-                    {...register('userCelPhone')}
-                    value={String(profileData.user.celphone)}
+                    value={valueCelular}
+                    mask="(99) 9 9999-9999"
+                    placeholder="(99) 9 9999-9999"
+                    {...(register('userCelPhone'),
+                    {
+                      onChange(event) {
+                        setValueCelular(event.target.value)
+                      },
+                    })}
                   />
                 </InputLabel>
               </LineBreaker>
@@ -399,13 +434,18 @@ export function Edition() {
 
                 <InputLabel htmlFor="userAddressCEP" inputSize="small">
                   <span>CEP</span>
-
-                  <input
+                  <InputMask
                     disabled={inputDisabled}
                     id="userAddressCEP"
-                    type="text"
-                    {...register('userAddressCEP')}
-                    value={String(profileData.user.address.cep)}
+                    value={valueCep}
+                    mask="99999-999"
+                    placeholder="99999-999"
+                    {...(register('userAddressCEP'),
+                    {
+                      onChange(event) {
+                        setValueCep(event.target.value)
+                      },
+                    })}
                   />
                 </InputLabel>
               </LineBreaker>
