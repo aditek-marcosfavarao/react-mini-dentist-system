@@ -1,4 +1,5 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -21,8 +22,12 @@ import {
   InputLabel,
 } from './styles'
 import { Avatar } from '../../components/Avatar'
+import { Profile } from '../../@types/profiles'
 
 export function Edition() {
+  const { state } = useLocation()
+  const profileData: Profile = state
+
   const [editForm, setEditForm] = React.useState(false)
 
   const {
@@ -82,13 +87,14 @@ export function Edition() {
 
   // verificação de datas não está funcionando
 
+  const profileLetter = profileData?.user?.name.substring(0, 1)
   return (
     <>
       <EditionContainer>
         <EditionDisplay>
           <DisplayHeader>
             <Avatar
-              contentLetter={`A`}
+              contentLetter={profileLetter}
               hasMargin={false}
               variantSize={'mid'}
               variantFontSize={'small'}
@@ -98,9 +104,10 @@ export function Edition() {
             />
 
             <Info>
-              <h2>Marcos Adriano Lorencini Favarão</h2>
+              <h2>{profileData.user?.name}</h2>
               <h3>
-                Tipo de tratamento: <span>Completo</span>
+                Tipo de tratamento:{' '}
+                <span>{profileData.treatment?.treatmentType}</span>
               </h3>
               <time>Última edição: 0</time>
             </Info>
@@ -138,6 +145,7 @@ export function Edition() {
                     id="lastApointment"
                     type="datetime-local"
                     {...register('lastApointment')}
+                    value={String(profileData.appointment.lastApointment)}
                   />
                 </InputLabel>
 
@@ -149,6 +157,7 @@ export function Edition() {
                     id="nextApointment"
                     type="datetime-local"
                     {...register('nextApointment')}
+                    value={String(profileData.appointment.nextApointment)}
                   />
                 </InputLabel>
               </LineBreaker>
@@ -167,6 +176,7 @@ export function Edition() {
                     list="treatments"
                     type="text"
                     {...register('treatmentType')}
+                    value={String(profileData.treatment.treatmentType)}
                   />
                 </InputLabel>
 
@@ -186,6 +196,7 @@ export function Edition() {
                     id="treatmentStart"
                     type="date"
                     {...register('treatmentStart')}
+                    value={String(profileData.treatment.treatmentStart)}
                   />
                 </InputLabel>
 
@@ -197,6 +208,7 @@ export function Edition() {
                     id="treatmentEnd"
                     type="date"
                     {...register('treatmentEnd')}
+                    value={String(profileData.treatment.treatmentEnd)}
                   />
                 </InputLabel>
               </LineBreaker>
@@ -229,6 +241,7 @@ export function Edition() {
                     maxLength={11}
                     placeholder="000.000.000-00"
                     {...register('userID')}
+                    value={String(profileData.user.id)}
                   />
                 </InputLabel>
 
@@ -242,6 +255,7 @@ export function Edition() {
                     maxLength={9}
                     placeholder="00.000.000-0"
                     {...register('userDocument')}
+                    value={String(profileData.user.document)}
                   />
                 </InputLabel>
 
@@ -253,6 +267,7 @@ export function Edition() {
                     id="userBirthdate"
                     type="date"
                     {...register('userBirthdate')}
+                    value={String(profileData.user.birthdate)}
                   />
                 </InputLabel>
 
@@ -265,6 +280,7 @@ export function Edition() {
                     type="number"
                     min={1}
                     {...register('userAge')}
+                    value={String(profileData.user.age)}
                   />
                 </InputLabel>
               </LineBreaker>
@@ -289,6 +305,7 @@ export function Edition() {
                     id="userCelPhone"
                     type="text"
                     {...register('userCelPhone')}
+                    value={String(profileData.user.celphone)}
                   />
                 </InputLabel>
               </LineBreaker>
@@ -303,6 +320,7 @@ export function Edition() {
                     type="email"
                     placeholder="mail@mail.com"
                     {...register('userEmail')}
+                    value={String(profileData.user.email)}
                   />
                 </InputLabel>
               </LineBreaker>
@@ -316,6 +334,7 @@ export function Edition() {
                     id="userAddress"
                     type="text"
                     {...register('userAddress')}
+                    value={String(profileData.user.address.address)}
                   />
                 </InputLabel>
               </LineBreaker>
@@ -330,6 +349,7 @@ export function Edition() {
                     type="number"
                     min={1}
                     {...register('userAddressNumber')}
+                    value={String(profileData.user.address.number)}
                   />
                 </InputLabel>
 
@@ -341,6 +361,7 @@ export function Edition() {
                     id="userAddressComplement"
                     type="text"
                     {...register('userAddressComplement')}
+                    value={String(profileData.user.address.complement)}
                   />
                 </InputLabel>
 
@@ -352,6 +373,7 @@ export function Edition() {
                     id="userAddressCity"
                     type="text"
                     {...register('userAddressCity')}
+                    value={String(profileData.user.address.city)}
                   />
                 </InputLabel>
 
@@ -365,6 +387,7 @@ export function Edition() {
                     type="text"
                     list="ufs"
                     {...register('userAddressUF')}
+                    value={String(profileData.user.address.uf)}
                   />
 
                   <datalist id="ufs">
@@ -382,6 +405,7 @@ export function Edition() {
                     id="userAddressCEP"
                     type="text"
                     {...register('userAddressCEP')}
+                    value={String(profileData.user.address.cep)}
                   />
                 </InputLabel>
               </LineBreaker>
@@ -397,6 +421,7 @@ export function Edition() {
                   rows={10}
                   placeholder="..."
                   {...register('medicineObservations')}
+                  value={String(profileData.medicineObservations)}
                 />
               </LineBreaker>
             </ContentBlock>
@@ -411,6 +436,7 @@ export function Edition() {
                   rows={10}
                   placeholder="..."
                   {...register('observations')}
+                  value={String(profileData.observations)}
                 />
               </LineBreaker>
             </ContentBlock>

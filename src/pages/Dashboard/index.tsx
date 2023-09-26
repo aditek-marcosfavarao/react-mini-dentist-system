@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   CaretLeft,
   CaretRight,
@@ -27,6 +28,7 @@ import {
 import { Avatar } from '../../components/Avatar'
 
 export function Dashboard() {
+  const navigate = useNavigate()
   const navbarElementsCapacity = 10
 
   const divElementRef = React.useRef<HTMLDivElement | null>(null)
@@ -58,11 +60,14 @@ export function Dashboard() {
   }
 
   const onDeletePatient = () => {
-    // const data = userList
-    // const targetUserToDelete = data.filter((user) => user.id !== targetUser.id)
-    // setUserList(targetUserToDelete)
-    // setTargetUser({} as UserType)
-    // setIsPopupVisible(false)
+    const profileList = profilesList
+    const currentProfile = profile
+    const deletedUser = profileList.filter(
+      (profile) => profile.id !== currentProfile.id,
+    )
+    setProfilesList(deletedUser)
+    setProfile({} as Profile)
+    setIsPopupVisible(false)
   }
 
   function Profile(_profile: Profile) {
@@ -85,6 +90,11 @@ export function Dashboard() {
         </IconPatient>
       </>
     )
+  }
+
+  function goToEditionPage() {
+    const targetProfile = profile
+    navigate('/edition', { state: targetProfile })
   }
 
   const CardPatient = () => {
@@ -148,10 +158,7 @@ export function Dashboard() {
                 className="iconEditCard"
                 weight="bold"
                 size={23}
-                onClick={() => {
-                  localStorage.setItem('user', JSON.stringify(profile))
-                  // navigate('/edition')
-                }}
+                onClick={goToEditionPage}
               />
             </div>
           )}
