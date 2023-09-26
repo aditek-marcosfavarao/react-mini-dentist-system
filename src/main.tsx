@@ -6,6 +6,11 @@ import { App } from './App.tsx'
 
 import { profiles } from './data/profiles.ts'
 
+const PROFILE_LOGIN = {
+  email: 'admin@admin.com',
+  password: '123456',
+}
+
 createServer({
   models: {
     profile: Model,
@@ -22,6 +27,10 @@ createServer({
 
     this.get('/profiles', () => {
       return this.schema.all('profile')
+    })
+
+    this.post('/login', (request, response) => {
+      console.log(response)
     })
   },
 })

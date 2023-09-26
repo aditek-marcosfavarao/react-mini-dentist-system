@@ -15,6 +15,7 @@ import {
   InputLabel,
   InputSettings,
 } from './styles'
+import { api } from '../../services/api'
 
 interface IconProps {
   onClickEvent: () => void
@@ -51,9 +52,15 @@ export function Login() {
 
   const [passwordVisibility, setPasswordVisibility] = React.useState(false)
 
-  function handleSubmitLoginForm(data: LoginFormData) {
-    console.log(data)
-    reset()
+  async function handleSubmitLoginForm(data: LoginFormData) {
+    try {
+      // const response = await api.post('/login')
+      console.log(data)
+    } catch (error) {
+      console.error(error)
+    } finally {
+      reset()
+    }
   }
 
   function handleChangePasswordVisibility() {
